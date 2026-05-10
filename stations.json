@@ -1,0 +1,2757 @@
+[
+  {
+    "name": "101.1Megasite",
+    "streamUrl": "http://37.247.98.8/stream/30/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "102.1 Arabeskin Merkezi Fm",
+    "streamUrl": "https://canli.arabeskinmerkezi.com:9180/listen.pls",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "107.4 Radio Voyage",
+    "streamUrl": "https://dygedge.radyotvonline.net/radyovoyage/playlist.m3u8?listenerid=29d0a6a85b59cea2ca801b70d2a3ebaf&awparams=companionAds%3Atrue",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "90 lar Pop",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/radyolanddoksanlar/playlist.m3u8",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "90LAR",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/90lar/playlist.m3u8",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "90lar turkey",
+    "streamUrl": "http://37.247.98.8/stream/166/",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "95.1 TEMPO RADYO HATAY",
+    "streamUrl": "https://sslyayin.netyayin.net/tempo/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "A Haber",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/ahaberradyo/playlist.m3u8",
+    "category": "Haber"
+  },
+  {
+    "name": "A spor",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/asporradyo/chunklist.m3u8",
+    "category": "Spor"
+  },
+  {
+    "name": "ADANA FM",
+    "streamUrl": "https://host.onlineradyotv.net:2020/stream/adanafm",
+    "category": "Yerel"
+  },
+  {
+    "name": "AFN 360 Incirlik",
+    "streamUrl": "http://playerservices.streamtheworld.com/m3u/AFNE_ICK.m3u",
+    "category": "Yerel"
+  },
+  {
+    "name": "AFN İNCİRLİK",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/AFNE_ICK.mp3",
+    "category": "Yerel"
+  },
+  {
+    "name": "AKTİF FM",
+    "streamUrl": "https://radyo.yayindakiler.com:3164/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "ALEM FM",
+    "streamUrl": "https://edge1.radyotvonline.net/shoutcast/play/alemfm",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "ALTIN SARKILAR",
+    "streamUrl": "http://37.247.98.8/listen.pls?sid=25",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "ALTIN ŞARKILAR",
+    "streamUrl": "https://moondigitalmaster.radyotvonline.net/altinsarkilar/playlist.m3u8",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "ANTAKYA RENK FM HATAY",
+    "streamUrl": "https://radyo.yayindakiler.com:3016/renk",
+    "category": "Yerel"
+  },
+  {
+    "name": "ASPOR",
+    "streamUrl": "http://trkvz-radyolar.ercdn.net/asporradyo/playlist.m3u8",
+    "category": "Spor"
+  },
+  {
+    "name": "Abuzer FM",
+    "streamUrl": "http://live.radyotvonline.com:9030/;stream.nsv",
+    "category": "Yerel"
+  },
+  {
+    "name": "Ahaber",
+    "streamUrl": "http://trkvz-radyolar.ercdn.net/ahaberradyo/chunklist.m3u8",
+    "category": "Haber"
+  },
+  {
+    "name": "Akra FM",
+    "streamUrl": "https://d3r5bwwuab2v60.cloudfront.net/akracanli2/_definst_/livestream_aac/playlist.m3u8",
+    "category": "Dini"
+  },
+  {
+    "name": "Alem FM",
+    "streamUrl": "http://turkmedya.radyotvonline.com/turkmedya/alemfm.stream/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Alem Fm",
+    "streamUrl": "https://turkmedya.radyotvonline.net/alemfmaac",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Ankara Havalari",
+    "streamUrl": "http://37.247.98.8/listen.pls?sid=30",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Apacik Radyo",
+    "streamUrl": "http://stream.34bit.net/ar.aac",
+    "category": "Yerel"
+  },
+  {
+    "name": "Arabesk FM",
+    "streamUrl": "http://yayin.arabeskfm.biz:8042/",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Arkadas Radyo",
+    "streamUrl": "http://yayin2.yayindakiler.com:4134/;stream.nsv",
+    "category": "Yerel"
+  },
+  {
+    "name": "Avrasya Türk Radyo",
+    "streamUrl": "https://sslyayin.netyayin.net:10909/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Axa Rojava",
+    "streamUrl": "https://stream.zeno.fm/h6mn2c8ha8zuv",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Azadi Fm",
+    "streamUrl": "https://amed.ozelip.com/8040/;",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "AÇS Radyo",
+    "streamUrl": "https://ip169.ozelip.com:10838/",
+    "category": "Yerel"
+  },
+  {
+    "name": "Aşk FM",
+    "streamUrl": "http://yayin.asymedya.com:8020/;",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "BABYLAND TURKEY",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/babyland/playlist.m3u8",
+    "category": "Çocuk"
+  },
+  {
+    "name": "BANAZ DOST FM",
+    "streamUrl": "https://sssx.radyosfer.com/banazdostfm/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "BARIŞ FM",
+    "streamUrl": "https://sslyayin.netyayin.net:10990/",
+    "category": "Yerel"
+  },
+  {
+    "name": "BATI RADYO",
+    "streamUrl": "https://sslyayin.netyayin.net:10902/",
+    "category": "Yerel"
+  },
+  {
+    "name": "BAU RADYO",
+    "streamUrl": "https://ssl120.radyotelekom.com.tr/8106/stream.mp4",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "BAYRAM FM TURKEY",
+    "streamUrl": "https://sslyayin.netyayin.net/3442/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "BEST HİT",
+    "streamUrl": "https://wowza3.radyotvonline.com/best/bestteen.stream/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "BEST KINA",
+    "streamUrl": "https://wowza3.radyotvonline.com/best/bestkina.stream/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "BEST RAP",
+    "streamUrl": "https://wowza3.radyotvonline.com/best/bestgicir.stream/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "BEST SLOW",
+    "streamUrl": "https://hepsibest.radyotvonline.net/bestslow",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "BOĞAZ FM",
+    "streamUrl": "https://radyo.yayin.com.tr:5938/",
+    "category": "Yerel"
+  },
+  {
+    "name": "BRTK",
+    "streamUrl": "http://sc.brtk.net:8000/",
+    "category": "Yerel"
+  },
+  {
+    "name": "BURDUR FM",
+    "streamUrl": "https://sssx.radyosfer.com/burdurfm/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "BURSA FM",
+    "streamUrl": "https://radyo.yayin.com.tr:1055/",
+    "category": "Yerel"
+  },
+  {
+    "name": "Baba Radyo",
+    "streamUrl": "https://babaradyo.turkhosted.com/best/babaradyo.stream/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Banko Fm 1",
+    "streamUrl": "http://yayin.netradyom.com:9910/RADYOBANKO",
+    "category": "Yerel"
+  },
+  {
+    "name": "Bayram FM",
+    "streamUrl": "https://sslyayin.netyayin.net:10962/320.mp3",
+    "category": "Yerel"
+  },
+  {
+    "name": "Best FM",
+    "streamUrl": "https://ssldyg.radyotvonline.com/best/bestfm.stream/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "BesteFM",
+    "streamUrl": "https://stream.zeno.fm/tnvnovtgozstv",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "BesteFM Mix",
+    "streamUrl": "https://yayin.radyomadyo.com:8002/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Beyaz TV",
+    "streamUrl": "https://beyaztv-live.daioncdn.net/beyaztv/beyaztv_1080p.m3u8",
+    "category": "TV (Video)"
+  },
+  {
+    "name": "Bizim Radyo",
+    "streamUrl": "https://ip132.ozelip.com:7017/",
+    "category": "Yerel"
+  },
+  {
+    "name": "BloombergHTradyo",
+    "streamUrl": "https://ciner-live.ercdn.net/bloombergradyo/bloombergradyo_1.m3u8",
+    "category": "Haber"
+  },
+  {
+    "name": "Bodrum Fm",
+    "streamUrl": "https://live.bodrumfm.org/stream.mp3",
+    "category": "Yerel"
+  },
+  {
+    "name": "Borusan Klasik",
+    "streamUrl": "http://provisioning.streamtheworld.com/pls/BORUSAN_KLASIKAAC.pls",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "BİGA FM",
+    "streamUrl": "https://radyo.yayin.com.tr:5896/",
+    "category": "Yerel"
+  },
+  {
+    "name": "BİLECİK FM TURKEY",
+    "streamUrl": "http://bilecikfm.kesintisizyayin.com:9980/",
+    "category": "Yerel"
+  },
+  {
+    "name": "CEMRE FM",
+    "streamUrl": "https://yayin2.canliyayin.org:8024/",
+    "category": "Yerel"
+  },
+  {
+    "name": "CLASSICLAND TURKEY",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/classicland/playlist.m3u8",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "COFFEE PROJECT RADYO",
+    "streamUrl": "https://radyo.yayin.com.tr:5926/",
+    "category": "Yerel"
+  },
+  {
+    "name": "Can Radyo",
+    "streamUrl": "http://yayin1.yayindakiler.com:3124/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Can Tv",
+    "streamUrl": "https://livetv.canbroadcast.com:7443/canlican/tv.m3u8",
+    "category": "TV (Video)"
+  },
+  {
+    "name": "Cantürk Radyo",
+    "streamUrl": "https://moondigitaledge2.radyotvonline.net/cnnturk/playlist.m3u8?listeningSessionID=669e367246737fe5_6249184_Zq120UIn__0000001w2Bs&downloadSessionID=0",
+    "category": "Haber"
+  },
+  {
+    "name": "DADA RADYO",
+    "streamUrl": "http://stream.laut.fm/dadaradio",
+    "category": "Yerel"
+  },
+  {
+    "name": "DAMAR TURK FM",
+    "streamUrl": "https://live.radyositesihazir.com:10997/",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "DEDEMİN RADYOSU",
+    "streamUrl": "https://anadolu.liderhost.com.tr/9002/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "DENİZ FM",
+    "streamUrl": "https://sssx.radyosfer.com/denizfm/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "DERYA FM",
+    "streamUrl": "https://yayin.turkhosted.com:6032/",
+    "category": "Yerel"
+  },
+  {
+    "name": "DO U FM",
+    "streamUrl": "https://sslyayin.netyayin.net:10935/",
+    "category": "Yerel"
+  },
+  {
+    "name": "DOLU RADYO",
+    "streamUrl": "https://sslyayin.radyoyayini.com:7070/",
+    "category": "Yerel"
+  },
+  {
+    "name": "DOĞAN 21",
+    "streamUrl": "https://radyo.yayindakiler.com:3024/",
+    "category": "Yerel"
+  },
+  {
+    "name": "DREAM TÜRK",
+    "streamUrl": "https://radyo.duhnet.tv/dreamturk",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "DT NOSTALJİ",
+    "streamUrl": "https://canli.dtnostalji.com.tr/9999/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Dadaş Fm Erzurum",
+    "streamUrl": "https://sslyayin.netyayin.net:8084/stream/;stream.mp3",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Damar Turk FM",
+    "streamUrl": "https://live.radyositesihazir.com:10997/;",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "DamarTurk FM",
+    "streamUrl": "https://live.radyositesihazir.com:10997/stream?type=http&nocache=99881",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "DanceLand Anthems",
+    "streamUrl": "https://likeradiostream.com/dancelandanthems",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Danceland",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/danceland/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "DateLine IP",
+    "streamUrl": "https://stream.datelineip.com/hls/datelineip/live.m3u8",
+    "category": "Genel"
+  },
+  {
+    "name": "Denge Gundeme",
+    "streamUrl": "http://kesintisizyayin.com:1656/",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Dijital radyo",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10961/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "Discoland",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/discoland/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Diyarbakır Çağrı FM",
+    "streamUrl": "https://live.cagrifm.com.tr/cagrifm",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Dost",
+    "streamUrl": "http://yayin1.yayindakiler.com:3156/",
+    "category": "Yerel"
+  },
+  {
+    "name": "Dost FM",
+    "streamUrl": "http://yayin.dostfm.com:8920/;.mp3?no_dl",
+    "category": "Yerel"
+  },
+  {
+    "name": "Dost Radyo",
+    "streamUrl": "http://yayin1.yayindakiler.com:3156/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "Doğan 22",
+    "streamUrl": "http://yayin1.yayindakiler.com:3024/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "Doğu Radyo",
+    "streamUrl": "http://198.7.59.28:8146/",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "DÜNYADAN SESLER",
+    "streamUrl": "https://stream.radiojar.com/cg24hdbwa0hvv",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "EFSANE 4LÜ TURKEY",
+    "streamUrl": "https://moondigitalmaster.radyotvonline.net/efsane4lu/playlist.m3u8",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "EFSANE HOME",
+    "streamUrl": "http://37.247.98.8/stream/24/",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "EGE HAVALARI TURKEY",
+    "streamUrl": "https://moondigitalmaster.radyotvonline.net/egehavalari/playlist.m3u8",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "EGE KAMPÜS",
+    "streamUrl": "https://stream.ege.edu.tr/hls/rek.m3u8",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "ERT ELAZIĞ",
+    "streamUrl": "https://radyo.yayin.com.tr:8012/",
+    "category": "Yerel"
+  },
+  {
+    "name": "ERZİNCAN FM",
+    "streamUrl": "https://sslyayin.netyayin.net:10943/",
+    "category": "Yerel"
+  },
+  {
+    "name": "EVRENSEL FM",
+    "streamUrl": "https://ssl16.ozelip.com/asistan/stream/914fcb8228b91c6fe05b3bd0fa85299c",
+    "category": "Yerel"
+  },
+  {
+    "name": "EZGİ RADYO",
+    "streamUrl": "https://radyo.yayindakiler.com:3044/;",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Easyland",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/easyland/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Elazığ Mavi Radyo",
+    "streamUrl": "https://yayin.turkhosted.com/6066/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "Emek radyo",
+    "streamUrl": "http://yayin1.radyohizmeti.com:8585/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "Enderun FM",
+    "streamUrl": "http://yayin2.canliyayin.org:7052/;*.mp3",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "Engelliler radyo",
+    "streamUrl": "https://stream.zeno.fm/iuqovax9ftsvv",
+    "category": "Genel"
+  },
+  {
+    "name": "Ereğli FM",
+    "streamUrl": "http://radyo.yayindakiler.com:3000/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "Erkam Radyo",
+    "streamUrl": "https://api-tv5.yayin.com.tr:8002/mp3",
+    "category": "Dini"
+  },
+  {
+    "name": "Erkam Radyo 2nd Stream",
+    "streamUrl": "https://yayin2.canliyayin.org:10910/stream?",
+    "category": "Dini"
+  },
+  {
+    "name": "Erzincan Cem Radyo",
+    "streamUrl": "https://erzincan.80.yayin.com.tr/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "Erzincan Nostalji Radyo",
+    "streamUrl": "https://erzincannostalji.ozelip.com/8238/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Esas radyo",
+    "streamUrl": "https://yayin.turkhosted.com:6034/stream/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "FENOMEN AKUSTIK",
+    "streamUrl": "https://live.radyofenomen.com/fenomenakustik/abr/fenomenakustik/128/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "FENOMEN DANS",
+    "streamUrl": "https://live.radyofenomen.com/fenomendans/abr/fenomendans/128/chunks.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "FENOMEN KARISIK",
+    "streamUrl": "https://live.radyofenomen.com/fenomenkarisik/abr/fenomenkarisik/128/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "FENOMEN POP",
+    "streamUrl": "https://live.radyofenomen.com/fenomenpop/abr/fenomenpop/128/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "FENOMEN RAP",
+    "streamUrl": "https://live.radyofenomen.com/fenomenrap/abr/fenomenrap/128/chunks.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "FENOMEN TÜRK",
+    "streamUrl": "https://live.radyofenomen.com/fenomenturk/abr/fenomenturk/256/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "FG 93.8 (Future Generation) mp3 128k",
+    "streamUrl": "https://edge1.radyotvonline.net/shoutcast/play/fg",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "FIND A CUTİE",
+    "streamUrl": "https://stream.zeno.fm/lyl2uv7fcvovv",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "FLOW RADYO",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/flow/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "FRİGBO",
+    "streamUrl": "https://station.frigbo.com/listen/frigbo/radio.mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "FULL FM",
+    "streamUrl": "https://listen.powerapp.com.tr/powerdance/abr/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Fakir Fm",
+    "streamUrl": "https://live.radyositesihazir.com/1025/stream/",
+    "category": "Yerel"
+  },
+  {
+    "name": "Fenerbahce Radyo",
+    "streamUrl": "http://91.232.174.18:8000/Stream",
+    "category": "Spor"
+  },
+  {
+    "name": "Fenomen 2010'lar 256",
+    "streamUrl": "https://live.radyofenomen.com/fenomen2010/256/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Fenomen 256",
+    "streamUrl": "https://live.radyofenomen.com/fenomen/256/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Fenomen Clubbin 256",
+    "streamUrl": "https://live.radyofenomen.com/fenomenclubbin/256/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Fenomen Dans 256",
+    "streamUrl": "https://live.radyofenomen.com/fenomendans/256/chunks.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Fenomen Karışık 256",
+    "streamUrl": "https://live.radyofenomen.com/fenomenkarisik/256/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Fenomen Pop 256",
+    "streamUrl": "https://live.radyofenomen.com/fenomenpop/256/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Fenomen Türk 256",
+    "streamUrl": "https://live.radyofenomen.com/fenomenturk/256/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Fırat FM",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10912/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "GARAJ RADYO",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/garajradyo/playlist.m3u8",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "GENÇ KRAL FM",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10853/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "GENÇ RADYO",
+    "streamUrl": "https://yayin.turkhosted.com:6030/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "GENÇLİK RADYOSU",
+    "streamUrl": "https://canli.radyogenclik.com:9000/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "GREEKLAND",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/greekland/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "GURBETCİ FM",
+    "streamUrl": "https://sssx.radyosfer.com/gurbetcifm/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Genç FM",
+    "streamUrl": "https://yayin1.canlitv.fun/radyo/gencfm/chunklist_w1257533803.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Giresun FM",
+    "streamUrl": "http://yayin.canliyayin.org:9482/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "Govend radyo",
+    "streamUrl": "https://stream-56.zeno.fm/xzzu8kynq2zuv?zs=nZP7ZCRXQPOpDFenayr0bQ",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Gundi Fm",
+    "streamUrl": "http://gundifm.ozelip.com:7830/;",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "GÖKKUŞAĞI RADYO TURKEY",
+    "streamUrl": "http://gokkusagiradyo.kesintisizyayin.com:8008/",
+    "category": "Çocuk"
+  },
+  {
+    "name": "Göl Radyo",
+    "streamUrl": "https://28553.live.streamtheworld.com/SUPER_FM_ITUNES.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Gözyaşı FM",
+    "streamUrl": "http://yayin1.canliyayin.org:8700/;*.mp3",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Gül Fm",
+    "streamUrl": "https://yayin2.canliyayin.org:10989/;*.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "GİMSA RADYO",
+    "streamUrl": "http://yayin1.canliyayin.org:9482/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "HABER TÜRK RADYO",
+    "streamUrl": "https://haberturkradyo.radyotvonline.net/haberturkradyo",
+    "category": "Haber"
+  },
+  {
+    "name": "HAYAL FM",
+    "streamUrl": "https://panel.radyomhd.com:8050/",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "HAYAT MİX SLOW",
+    "streamUrl": "https://radyo.yayin.com.tr:4090/mp3",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "HAYATMİX",
+    "streamUrl": "https://hayatmix.yayin.com.tr/mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "HAYATMİX ARABESK",
+    "streamUrl": "https://radyo.yayin.com.tr:4078/mp3",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "HEY RADYO",
+    "streamUrl": "https://usa4.fastcast4u.com/proxy/radyoizmirfm/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "HOME KLASİK TURKEY",
+    "streamUrl": "https://ssl4.radyotvonline.com/radyohome/klasikhome.stream_aac/playlist.m3u8",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "HOS MİX",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10871/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "HOUSELAND TURKEY",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/houseland/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Haber Türk Radyo",
+    "streamUrl": "http://haberturkradyo.radyotvonline.net/haberturkradyo",
+    "category": "Haber"
+  },
+  {
+    "name": "Habertürk Radyo",
+    "streamUrl": "https://ciner.daioncdn.net/haberturktv/haberturktv_1080p.m3u8?sid=67dy0kx38l3a&app=c98ab0b0-50cc-495b-bb37-778e91f5ff5b&ce=3",
+    "category": "TV (Video)"
+  },
+  {
+    "name": "Halk Radyo",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10876/;",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Halk Tv",
+    "streamUrl": "https://halktv.daioncdn.net/halktv/halktv_1080p.m3u8?sid=6vahxsup0jxl&app=c86957d3-74a7-44da-9ad2-dc358c769609&ce=3",
+    "category": "TV (Video)"
+  },
+  {
+    "name": "Havin FM",
+    "streamUrl": "http://yayin6.radyohizmeti.com:7050/;stream.mp3",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Hemdem Radyo",
+    "streamUrl": "https://yayin.hemdemradyo.com/",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Her An Kur'an Her An Mutluluk",
+    "streamUrl": "https://radio.mihr.com/radio/8050/radio.mp3",
+    "category": "Dini"
+  },
+  {
+    "name": "JOY TÜRK FM",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOY_TURK_ITUNES.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "JOY TÜRK ROCK TURKEY",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOYTURK_ROCK_SC?/",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "JOY TÜRK TURKEY",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOY_TURK_SC?/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Joy FM Istanbul",
+    "streamUrl": "http://21633.live.streamtheworld.com/JOY_FM128AAC.aac",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Joy Fm",
+    "streamUrl": "http://provisioning.streamtheworld.com/pls/JOY_FMAAC.pls",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "JoyTürk Akustik",
+    "streamUrl": "http://playerservices.streamtheworld.com/api/livestream-redirect/JOYTURK_AKUSTIK128AAC.aac",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "JoyTürk Rock",
+    "streamUrl": "http://23613.live.streamtheworld.com/JOYTURK_ROCK128AAC.aac",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "KARMA TÜRK",
+    "streamUrl": "https://yayin.radyomadyo.com:8006/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KARMA TÜRK SLOW",
+    "streamUrl": "https://yayin.radyomadyo.com:8004/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KENT RADYO",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10906/",
+    "category": "Yerel"
+  },
+  {
+    "name": "KEYF STATION",
+    "streamUrl": "http://yayin.radyomadyo.com:8002/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KISS SPEED UP",
+    "streamUrl": "https://dijimedya.radyotvonline.net/speedup",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KIYI Muzik",
+    "streamUrl": "https://kiyi.radioca.st/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KIYI Turkce",
+    "streamUrl": "https://kiyiturk.radioca.st/stream",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "KLAS RADİO TURKEY",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10929/",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "KLASİK HOME",
+    "streamUrl": "http://37.247.98.8/stream/32/",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "KRAL FM",
+    "streamUrl": "https://dygedge2.radyotvonline.net/kralfm/playlist.m3u8?listenerid=29d0a6a85b59cea2ca801b70d2a3ebaf&awparams=companionAds%3Atrue",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KRAL POP ALTERNATİF 2",
+    "streamUrl": "https://ssldyg.radyotvonline.com/smil/smil:kralpop.smil/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KRAL TÜRK FM",
+    "streamUrl": "https://live.radyositesihazir.com/8032/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KTU",
+    "streamUrl": "https://sslyayin.netyayin.net/radyoktu/stream/;type=mp3",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "KUZEY FM TURKEY",
+    "streamUrl": "http://yayin.yayindakiler.com:3028/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Kafa Radyo",
+    "streamUrl": "https://moondigitalmaster.radyotvonline.net/kafaradyo/playlist.m3u8",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "Kalp FM",
+    "streamUrl": "https://yayin.kalpfm.com:8080/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Karadeniz FM",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/karadenizfm/playlist.m3u8",
+    "category": "Yerel"
+  },
+  {
+    "name": "Karadut Fm",
+    "streamUrl": "https://yayin5.radyohizmeti.com/9982/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Kent FM",
+    "streamUrl": "https://moondigitalmaster.radyotvonline.net/kentfm/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Kiss Türk",
+    "streamUrl": "https://kiss.radyotvonline.net/kissturk",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Konya İsra FM",
+    "streamUrl": "https://yayin2.canliyayin.org:8210/;stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "Kurd1",
+    "streamUrl": "https://www.radioking.com/play/kurd1-radyo",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Köroğlu FM",
+    "streamUrl": "https://yayin.turkhosted.com:6068/stream?/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Küpe FM",
+    "streamUrl": "https://icecast.netmedya.net/kupefm",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "KİSS GENÇ",
+    "streamUrl": "https://dijimedya.radyotvonline.net/gncradyo",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KİSS GOLD TÜRK",
+    "streamUrl": "https://dijimedya.radyotvonline.net/goldturk",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KİSS LOVE RADYO TURKEY",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10964/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "KİSS MUSİKİ",
+    "streamUrl": "https://dijimedya.radyotvonline.net/radyomusiki",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "KİSS SLOW",
+    "streamUrl": "https://radyo.slmbilisim.net/8004/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "KİSS TÜRK SLOW",
+    "streamUrl": "http://dijimedya.radyotvonline.net/turkslow",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Kıyı Caz",
+    "streamUrl": "http://caz.radioca.st/",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "Kıyı Gece",
+    "streamUrl": "https://gece.radioca.st/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Kıyı Türkçe",
+    "streamUrl": "https://kiyiturk.radioca.st/",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "LALEGÜL FM",
+    "streamUrl": "https://icecast.netmedya.net/lalegulfm",
+    "category": "Dini"
+  },
+  {
+    "name": "LATERADİO",
+    "streamUrl": "https://radio.lateradio.live/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "LP Roman Fm",
+    "streamUrl": "https://stream.zeno.fm/netvowp5t54uv.m3u",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Lig Radyo",
+    "streamUrl": "https://ligradyo.radyotvonline.net/ligradyo",
+    "category": "Spor"
+  },
+  {
+    "name": "Loops Radio Elektronica Station",
+    "streamUrl": "https://ssl22.radyotelekom.com/8232/stream",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Loops Radio House Station",
+    "streamUrl": "https://loopsdeep.ozelip.com/7806/stream",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Loops Radio Techno",
+    "streamUrl": "https://ip179.ozelip.com/7688//asistan/stream/",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "MASAL RADYO",
+    "streamUrl": "https://radyoserver3.okeylisans.com:14000/8552/;",
+    "category": "Çocuk"
+  },
+  {
+    "name": "MASTİKA FM",
+    "streamUrl": "https://mastika1.80.yayin.com.tr/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "MAZİDEN BİR DEMET",
+    "streamUrl": "http://37.247.98.8/stream/25/",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "MEGA SİTE",
+    "streamUrl": "http://yayin.netradyom.com:7900/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "MEGASITE",
+    "streamUrl": "https://stream.netradyom.com/listen/megasite/radio.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "MELANKOLİK HOME",
+    "streamUrl": "http://37.247.98.8/stream/20/",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "MELODİ RADYO",
+    "streamUrl": "https://radyomelodi.80.yayin.com.tr/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "MERKEZ FM SAMSUN TURKEY",
+    "streamUrl": "http://uydu.radyotvyayini.com:8016/",
+    "category": "Yerel"
+  },
+  {
+    "name": "MOOD ROCK",
+    "streamUrl": "https://radyo.yayin.com.tr:6321/;",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "MPL Radyo",
+    "streamUrl": "https://canli.hidayetradyolari.com/listen/mpl_radyo/radio.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Magic FM",
+    "streamUrl": "http://yayin1.yayindakiler.com:3032/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Max FM",
+    "streamUrl": "http://live2.radyotvonline.com:8025/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Max Fm 95.8 ‘Maximum Music'",
+    "streamUrl": "https://maxfm.radyotvonline.net/stream/164/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "MaxFM",
+    "streamUrl": "http://live.radyotvonline.com:8090/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Mayday Records",
+    "streamUrl": "https://stream.maydayrecords.net/radio/8000/maydayrecords.mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Med Radyo",
+    "streamUrl": "http://medradyo.kesintisizyayin.com:8062/listen.pls",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Mega Ask FM",
+    "streamUrl": "https://embed.tawk.to/_s/v4/assets/audio/chat_sound.mp3",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Mega Site",
+    "streamUrl": "http://yayin.netradyom.com:7900/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Mega Site .",
+    "streamUrl": "http://yayin.netradyom.com:7900/;stream.mp3RADYO%20MEGAS%C4%B0TE%20=",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Mekke Fm",
+    "streamUrl": "https://radyodinle.cansuyufm.com/17175/stream;",
+    "category": "Dini"
+  },
+  {
+    "name": "Metro FM",
+    "streamUrl": "http://28503.live.streamtheworld.com:3690/METRO_FMAAC_SC",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Metro fm turkey",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/METRO_FM_SC?",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Mio Radio",
+    "streamUrl": "https://s2.myradiostream.com/13662/;?type=http&nocache=1769756485?0.283950275860107",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Mix A Mix FM",
+    "streamUrl": "https://radyo.yayin.com.tr:5998/stream/1/?icy=http",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Moral FM",
+    "streamUrl": "https://stream-157.zeno.fm/0cfiqwdkobavv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiIwY2ZpcXdka29iYXZ2IiwiaG9zdCI6InN0cmVhbS0xNTcuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6Ik1kcEtfTUtQUm5xS3N4Mk8yXzl5YnciLCJpYXQiOjE3MzEyNzQ1ODIsImV4cCI6MTczMTI3NDY0Mn0.0eDtTzJb2qydtHkWls4Op4nmAZvg_Q9AyObMw0XOy50",
+    "category": "Dini"
+  },
+  {
+    "name": "Mydonose Türk",
+    "streamUrl": "https://27913.live.streamtheworld.com/MYDONOSE_TURK128AAC.aac?/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "NTV Radyo",
+    "streamUrl": "http://ntvrdwmp.radyotvonline.com/",
+    "category": "Haber"
+  },
+  {
+    "name": "NUMBER ONE TURK AJDA PEKKAN",
+    "streamUrl": "https://n10101m.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e3ed520608_1/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "NUMBER ONE WORLD",
+    "streamUrl": "https://n10101m.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2f95dcb16_1/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "NUR Radyo",
+    "streamUrl": "https://canli.hidayetradyolari.com/listen/radyo_nur/radio.mp3",
+    "category": "Dini"
+  },
+  {
+    "name": "Number 1 Türk Rap",
+    "streamUrl": "https://dijimedya.radyotvonline.net/turkrap",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Number One JAZZ",
+    "streamUrl": "https://n10101m.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e3e06878b9_1/playlist.m3u8",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "Number One Türk",
+    "streamUrl": "https://n10101m.mediatriple.net/numberoneturk",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Number one",
+    "streamUrl": "https://n10101m.mediatriple.net/numberone",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "ORDU FM",
+    "streamUrl": "https://radyo.yayindakiler.com:8012/",
+    "category": "Yerel"
+  },
+  {
+    "name": "Onur Radyo",
+    "streamUrl": "http://anadolu.liderhost.com.tr:8094/",
+    "category": "Dini"
+  },
+  {
+    "name": "Ostim Radyo",
+    "streamUrl": "https://stream.netradyom.com/radio/8010/radio.mp3%22",
+    "category": "Yerel"
+  },
+  {
+    "name": "OĞUZ FM",
+    "streamUrl": "https://radyo.yayin.com.tr:5892/",
+    "category": "Yerel"
+  },
+  {
+    "name": "PAL Nostalji",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/palnostalji/playlist.m3u8",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "PASH PASH RADYO",
+    "streamUrl": "https://hits.pashpashradio.com:7000/;",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "POP 90",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/POP90128AAC.aac",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "POP HOME",
+    "streamUrl": "https://moondigitalmaster.radyotvonline.net/pophome/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "POP LAND",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/popland/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "POWER 66",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10921/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "POWER EARTH",
+    "streamUrl": "http://listen.powerapp.com.tr/powerearth/abr/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "POWER TÜRK DANS TÜRKİYE",
+    "streamUrl": "https://listen.powerapp.com.tr/powerturkdans/abr/powerturkdans/128/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "POWER TÜRK FM",
+    "streamUrl": "https://live.powerapp.com.tr/powerturk/abr/powerturk/128/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "POWER TÜRK TAPTAZE",
+    "streamUrl": "https://listen.powerapp.com.tr/powerturktaptaze/abr/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "POWER XL TURKEY",
+    "streamUrl": "https://listen.powerapp.com.tr/powerextralounge/abr/powerextralounge/96/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "POWERTÜRK SLOW",
+    "streamUrl": "https://listen.powerapp.com.tr/powerturkslow/mpeg/icecast.audio",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Pal Doğa",
+    "streamUrl": "http://shoutcast.radyogrup.com:1040/;*.mp3",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Pal Fm",
+    "streamUrl": "https://ssl4.radyotvonline.com/radyohome/palfmhome.stream/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Pal station",
+    "streamUrl": "http://shoutcast.radyogrup.com:1020/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Park Fm",
+    "streamUrl": "http://yayin.netradyom.com:8050/PARKFM/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Pazarcık",
+    "streamUrl": "http://yayin.pazarcikfm.com:9090/",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Pir Yolu",
+    "streamUrl": "http://radyopiryolu.canliyayinda.com:8165/",
+    "category": "Dini"
+  },
+  {
+    "name": "Power Dance",
+    "streamUrl": "https://listen.powerapp.com.tr/powerdance/mpeg/icecast.audio",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Power FM Türkiye",
+    "streamUrl": "https://listen.powerapp.com.tr/powerfm/256/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Power Gold TR",
+    "streamUrl": "https://live.powerapp.com.tr/powergold/abr/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Power Love",
+    "streamUrl": "https://listen.powerapp.com.tr/plove/love.smil/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Power POP",
+    "streamUrl": "https://listen.powerapp.com.tr/powerpop/128/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Power R&B Hip-Hop",
+    "streamUrl": "https://listen.powerapp.com.tr/powerrbhiphop/256/chunks.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Power dance",
+    "streamUrl": "https://listen.powerapp.com.tr/powerdance/abr/powerdance/128/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Power love",
+    "streamUrl": "https://listen.powerapp.com.tr/powerlove/abr/powerlove/128/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "PowerTürk Akustik",
+    "streamUrl": "https://listen.powerapp.com.tr/powerturkakustik/abr/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "PowerTürk Dans",
+    "streamUrl": "https://listen.powerapp.com.tr/powerturkdans/abr/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Powerturk R&B Hip Hop",
+    "streamUrl": "https://listen.powerapp.com.tr/powerrbhiphop/abr/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "RADYO 08",
+    "streamUrl": "https://sslyayin.netyayin.net:10931/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO 16",
+    "streamUrl": "https://radyo.yayin.com.tr:6038/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO 23",
+    "streamUrl": "https://radyo.yayin.com.tr:8280/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO 24",
+    "streamUrl": "https://24arabesk.80.yayin.com.tr/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO 34",
+    "streamUrl": "https://radyo34.radyotvonline.net/radyo34",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO 42 FM MEDYA KONYA PR MUSIC TURKIYE",
+    "streamUrl": "https://a8.asurahosting.com/hls/radyo_42_fm_medya_konya_pr_music/live.m3u8",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO 68",
+    "streamUrl": "https://radyo.yayindakiler.com:4022/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO 71",
+    "streamUrl": "https://radyo.yayin.com.tr:5924/",
+    "category": "Dini"
+  },
+  {
+    "name": "RADYO 75",
+    "streamUrl": "https://anadolu.liderhost.com.tr/8126/stream",
+    "category": "Dini"
+  },
+  {
+    "name": "RADYO 80",
+    "streamUrl": "https://radyo.yayindakiler.com:4064/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO 9",
+    "streamUrl": "https://radyo.yayin.com.tr:4010/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO 90",
+    "streamUrl": "https://live.radyo.in/9054/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO AHENK",
+    "streamUrl": "https://yayin.radyomadyo.com:8014/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO AK",
+    "streamUrl": "https://radyo.yayin.com.tr:8026/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO AKDENIZ",
+    "streamUrl": "https://yayin.radyoakdeniz.com/9470/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO AKUSTİKLAND",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/akustikland/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO ANTALYA",
+    "streamUrl": "https://sslyayin.netyayin.net:8036/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO ARMONİ",
+    "streamUrl": "https://radyo.yayindakiler.com:4084/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO ATILIM",
+    "streamUrl": "https://listen.powerapp.com.tr/radyoatilim/mpeg/icecast.audio",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO AVARE",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10980/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO B",
+    "streamUrl": "https://radyob.ozelip.com.tr/8042/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO BAŞAKŞEHİR",
+    "streamUrl": "https://icecast.netmedya.net/rbasaksehir",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO BAŞKA",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/BASKA.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO BLACK",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10966/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO BU",
+    "streamUrl": "https://radyo.yayindakiler.com:8006/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO CLUBBİN",
+    "streamUrl": "https://radyo.yayin.com.tr:6199/",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "RADYO D",
+    "streamUrl": "https://radyo.duhnet.tv/radyod",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO DRK",
+    "streamUrl": "https://stream.zeno.fm/czwwh7xfqm0uv",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO DUBLE",
+    "streamUrl": "https://radyo.yayindakiler.com:2044/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO DÜET",
+    "streamUrl": "https://radyo.yayin.com.tr:6032/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO EGE HAVALARI",
+    "streamUrl": "http://37.247.98.8/stream/29/",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "RADYO ENERGY",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/radyoenergy/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO ESTÜ",
+    "streamUrl": "https://ssl120.radyotelekom.com.tr/8024/stream",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "RADYO EŞME",
+    "streamUrl": "https://anadolu.liderhost.com.tr:8358/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO FENOMEN 2010 LAR",
+    "streamUrl": "https://live.radyofenomen.com/fenomen2010/abr/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO FLAS",
+    "streamUrl": "https://radyo.yayindakiler.com:4096/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO GERÇEK",
+    "streamUrl": "https://ssl120.radyotelekom.com.tr:8198/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO GÜNEŞ",
+    "streamUrl": "https://sssx.radyosfer.com/radyogunes/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO GÜVEN",
+    "streamUrl": "https://radyo.yayin.com.tr:4098/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO HABER",
+    "streamUrl": "https://radyo.yayindakiler.com:4118/",
+    "category": "Haber"
+  },
+  {
+    "name": "RADYO HAZAR",
+    "streamUrl": "https://radyo.yayin.com.tr:8286/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO KLÜP",
+    "streamUrl": "https://radyo.yayin.com.tr:5894/",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "RADYO KOÇ",
+    "streamUrl": "https://stores.powerapp.com.tr/kocschool/mpeg/icecast.audio",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "RADYO KTU",
+    "streamUrl": "https://sslyayin.netyayin.net:8076/",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "RADYO KİLİM",
+    "streamUrl": "https://sslyayin.netyayin.net:10946/",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "RADYO LOJİK",
+    "streamUrl": "https://ip20.ozelip.com:9710/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO LİVA",
+    "streamUrl": "https://yayin.radyoliva.com:3068/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO MEGA",
+    "streamUrl": "https://megaradyoiskenderun.ozelip.com/8024/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO MEYDAN",
+    "streamUrl": "https://live.sinirsizhost.com/8042/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO MONİ",
+    "streamUrl": "https://radyo.yayin.com.tr:4262/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO MOOD",
+    "streamUrl": "https://radyo.yayin.com.tr:5862/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO MUĞLA",
+    "streamUrl": "https://radyo.yayindakiler.com:3006/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO MÜZEYYEN",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/muzeyyen/playlist.m3u8",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "RADYO NET",
+    "streamUrl": "https://sslyayin.netyayin.net:8068/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO NEVŞEHİR",
+    "streamUrl": "https://stream2.rtvtakip.com:7025/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO NEŞE",
+    "streamUrl": "https://radyo.yayindakiler.com:2042/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO PAUSE",
+    "streamUrl": "https://radyopause.ozelip.com.tr:8040/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO SAHİL",
+    "streamUrl": "https://radyo1.radyo-dinle.tc/8056/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO SARI TRAMVAY",
+    "streamUrl": "http://37.247.98.8/stream/27/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO SEVTEK",
+    "streamUrl": "https://sevtekfm.ozelip.com/8020/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO TALYA",
+    "streamUrl": "https://yayin.radyotalya.com:9424/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO TUTKU",
+    "streamUrl": "https://sssx.radyosfer.com/tutkuradyo/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO TÜRKÜ",
+    "streamUrl": "https://yayin.radyomadyo.com:8008/stream",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "RADYO VOYAGE",
+    "streamUrl": "http://voyagewmp.radyotvonline.com/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO YANKI",
+    "streamUrl": "https://radyoyanki.ozelip.com:9918/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO ZERGAN (47)",
+    "streamUrl": "https://sslyayin.netyayin.net/radyozergan/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO ÇAĞLAR",
+    "streamUrl": "https://sssx.radyosfer.com/radyocaglar/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO ÇUKUR",
+    "streamUrl": "https://radyo.yayin.com.tr:4060/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO ÜLKÜ",
+    "streamUrl": "https://radyo.yayin.com.tr:4006/",
+    "category": "Yerel"
+  },
+  {
+    "name": "RADYO İMZA",
+    "streamUrl": "https://radyo.radyoimza.com:8016/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADYO ŞAMPİYON",
+    "streamUrl": "https://radyo.yayin.com.tr:4106/stream",
+    "category": "Spor"
+  },
+  {
+    "name": "RADYOTÜRK",
+    "streamUrl": "https://radyo.yayindakiler.com:4028/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RADİO 5 LEGEND",
+    "streamUrl": "https://radiocom.80.yayin.com.tr/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RAP HOME",
+    "streamUrl": "http://37.247.98.8/stream/606/",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "RELAX HOME",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/relaxhome/playlist.m3u8",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "REPLAY NEWS - Türkçe Her 5 dakikada haber radyosu",
+    "streamUrl": "https://replaynewstr.ice.infomaniak.ch/replaynewstr-128.mp3",
+    "category": "Haber"
+  },
+  {
+    "name": "ROCK FM",
+    "streamUrl": "https://rockfm.rockfm.com.tr:9450/stream",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "ROMANTİK TÜRK",
+    "streamUrl": "https://radyo.yayin.com.tr:6042/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RS FM",
+    "streamUrl": "http://nfw.video.ria.ru/flv/audio.aspx?ID=99244423&type=mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "RUN ON AİR",
+    "streamUrl": "https://stream.radio.co/s5865f80fd/listen",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Radio 44",
+    "streamUrl": "https://radyo44.80.yayin.com.tr/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radio 5 Turkey",
+    "streamUrl": "https://radyo.yayin.com.tr/tunein/radiotrc.asx",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radio Antalya",
+    "streamUrl": "https://my.radiolize.com/radio/8000/radio.mp3",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radio Ava Turkiye",
+    "streamUrl": "http://play.markaradyo.com:8002/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radio Glamorize",
+    "streamUrl": "https://live.radioglamorize.com/stream1",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radio Life Kayseri",
+    "streamUrl": "https://yayin2.canliyayin.org:10990/;*.mp3",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radio Light",
+    "streamUrl": "http://yayin.radiolight.net:8005/live",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radio Line",
+    "streamUrl": "https://online.radioline.fm:8443/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radio Mydonose",
+    "streamUrl": "https://29083.live.streamtheworld.com/RADIO_MYDONOSE128AAC.aac?/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radio Wanderlust",
+    "streamUrl": "http://radyo.yayin.com.tr:5898/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radioo Mega site",
+    "streamUrl": "http://mega.netradyom.com:7900/listen.pls",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo 13",
+    "streamUrl": "https://radyo.yayindakiler.com:3050/stream?/;stream.mp3",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radyo 2000 Erzincan",
+    "streamUrl": "https://radyo.yayindakiler.com:3030/stream?/;stream.mp3",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radyo 35",
+    "streamUrl": "https://yayin.turkhosted.com/6012/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo 45'lik",
+    "streamUrl": "http://stream.radyo45lik.com:4545/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo 45’lik, 1970’ler, 1980’ler ve 1990’lar",
+    "streamUrl": "https://stream.radyo45lik.com:4545/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo 7",
+    "streamUrl": "http://46.20.3.250/;stream",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo A (Radyo Anadolu Üniversitesi)",
+    "streamUrl": "http://canli.radyoa.anadolu.edu.tr:44445/Radyo_A_MP3",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "Radyo Alaturka",
+    "streamUrl": "https://yayin.jumboserver.net:9100/stream",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Radyo Alevi Canlar",
+    "streamUrl": "https://alevifm.80.yayin.com.tr/",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo Arkadaş",
+    "streamUrl": "https://ssl120.radyotelekom.com.tr/9998/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Banko Fm",
+    "streamUrl": "http://yayin.netradyom.com:8050/RADYOBANKO",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Bilkent",
+    "streamUrl": "https://stream.netradyom.com/listen/radyobilkent/radio.mp3",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "Radyo Can",
+    "streamUrl": "http://yayin2.yayindakiler.com:4174/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo D",
+    "streamUrl": "https://moondigitaledge2.radyotvonline.net/radyod/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Delal",
+    "streamUrl": "https://wowza1.radyotvonline.com/idilpr/radyodelal.stream/playlist.m3u8",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Radyo Duygusal",
+    "streamUrl": "https://radyoduygusal.kesintisizyayin.com:9596/;*.nsv",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Radyo EN",
+    "streamUrl": "https://yayin2.canliyayin.org:7222/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Ekin",
+    "streamUrl": "https://yayin.turkhosted.com/6006/stream",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Radyo Eksen",
+    "streamUrl": "https://dygedge.radyotvonline.net/radyoeksen/playlist.m3u8",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "Radyo Eksen 96.2",
+    "streamUrl": "http://eksenwmp.radyotvonline.com/;stream.mp3",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "Radyo Esenler",
+    "streamUrl": "https://yayin2.canliyayin.org:10978/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radyo Fenomen",
+    "streamUrl": "https://live.radyofenomen.com/fenomen/128/icecast.audio",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Fenomen Clubbin",
+    "streamUrl": "https://live.radyofenomen.com/fenomenclubbin/128/icecast.audio",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Fenomen Dans",
+    "streamUrl": "https://live.radyofenomen.com/fenomendans/abr/playlist.m3u8",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "Radyo Fikir",
+    "streamUrl": "https://studio21.radiolize.com/radio/8100/radio.mp3?1647021999",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radyo Fıtrat",
+    "streamUrl": "http://radyofitrat.radyotvonline.net/",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo Gol",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/radyogol/playlist.m3u8",
+    "category": "Spor"
+  },
+  {
+    "name": "Radyo Göktürk",
+    "streamUrl": "https://ip231.ozelip.com:8004/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Gökçeada",
+    "streamUrl": "https://radyo.yayin.com.tr:6179/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radyo Gül",
+    "streamUrl": "http://yayin2.canliyayin.org:8866/;*.mp3",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo Hakkın Sesi",
+    "streamUrl": "https://radio.mihr.com/radio/8010/hakkinsesi",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo Hayat",
+    "streamUrl": "http://live4.radyotvonline.com:9450/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Hidayet Çağı",
+    "streamUrl": "https://radio.mihr.com/radio/8000/radio.mp3",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo ILEF Ankara",
+    "streamUrl": "http://radyo.cc.ankara.edu.tr:8089/listen.pls",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "Radyo Karabalı",
+    "streamUrl": "https://radyokarabali.ozelip.com:9884/;",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radyo MODyAn",
+    "streamUrl": "http://stream.radio.co/s55d598f42/listen",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Maranata",
+    "streamUrl": "http://medya.radyomaranata.com:8005/live",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo Mars",
+    "streamUrl": "https://yayin.radyomadyo.com:9400/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Megasite",
+    "streamUrl": "http://mega.netradyom.com:7900/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Mori",
+    "streamUrl": "https://amed.ozelip.com/8040/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Munzur 97.7",
+    "streamUrl": "http://yayin1.yayindakiler.com:3002/;stream.nsv",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radyo Nebi",
+    "streamUrl": "https://anadolu.liderhost.com.tr/9006/stream",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo Nida",
+    "streamUrl": "https://anadolu.liderhost.com.tr/8106/stream",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo Nostaljinin Sesi",
+    "streamUrl": "http://eu8.fastcast4u.com/proxy/eskininadami/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Radyo ODTU",
+    "streamUrl": "http://stream.radyoodtu.com.tr/;",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "Radyo ODTU - Rock",
+    "streamUrl": "http://stream.radyoodtu.com.tr/rock",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "Radyo Odtu Easy",
+    "streamUrl": "https://stream3.radyoodtu.com.tr:8000/easy",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "Radyo S",
+    "streamUrl": "http://icecast.netmedya.net/radyos",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radyo Seymen",
+    "streamUrl": "https://yayin.radyoseymen.com.tr:1070/stream",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Radyo Sinerji",
+    "streamUrl": "https://radio.guventechnology.com/9994/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Slow Time",
+    "streamUrl": "http://46.20.7.103:8040/;",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Radyo Spor",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/radyospor/playlist.m3u8",
+    "category": "Spor"
+  },
+  {
+    "name": "Radyo Sputnik",
+    "streamUrl": "https://icecast-rian.cdnvideo.ru/voicestm",
+    "category": "Haber"
+  },
+  {
+    "name": "Radyo Taksi",
+    "streamUrl": "https://live.radyo.in/8006/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Trafik 104.2 Ankara",
+    "streamUrl": "http://live2.radyotvonline.com:8000/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Trafik İstanbul",
+    "streamUrl": "http://37.247.100.118/stream/157/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Trio",
+    "streamUrl": "http://radyotrio.radyotvonline.net/radyotrio",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Turkuvaz",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/radyoturkuvaz/playlist.m3u8",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Radyo Vatan Türkü",
+    "streamUrl": "http://95.0.173.195:9000/turku",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Radyo Venüs",
+    "streamUrl": "https://stream2.rtvtakip.com:7005/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Viva",
+    "streamUrl": "https://edge1.radyotvonline.net/shoutcast/play/radyoviva",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Voyage",
+    "streamUrl": "https://ssldyg.radyotvonline.com/pozitif/smil:voyage.smil/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo Yalova",
+    "streamUrl": "https://studio25.radiolize.com/radio/8200/radio.mp3",
+    "category": "Yerel"
+  },
+  {
+    "name": "Radyo light",
+    "streamUrl": "https://yayin.radiolight.net:8005/live",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Radyo İlahi",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10994/;",
+    "category": "Dini"
+  },
+  {
+    "name": "Radyo Şiran",
+    "streamUrl": "https://live.radyositesihazir.com/8078/stream",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "RadyoVoyage",
+    "streamUrl": "http://voyagesc.radyotvonline.com/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Retro Turk",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/RETROTURK_SC?/;",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Ribat FM",
+    "streamUrl": "http://yayin1.canliyayin.org:7010/;*.mp3",
+    "category": "Dini"
+  },
+  {
+    "name": "Risalet Radyo",
+    "streamUrl": "https://eustr73.mediatriple.net/videoonlylive/mtikoimxnztxlive/broadcast_5e3c1520b2626.smil/playlist.m3u8",
+    "category": "Dini"
+  },
+  {
+    "name": "Romantik SES Sakarya",
+    "streamUrl": "https://radyo.romantikses.com/romantiksessakary/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Romantik Ses ISPARTA",
+    "streamUrl": "https://radyo.romantikses.com/romantiksesispart/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "S1lhoutte - Slow FM",
+    "streamUrl": "https://anadolu.liderhost.com.tr:10973/",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "S1lhoutte Arabesk FM",
+    "streamUrl": "https://yayin.radyoarabesk.com.tr:8000/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "SES FM",
+    "streamUrl": "https://yayin.sesfm.com.tr:8090/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "SEYDİŞEHİR FM",
+    "streamUrl": "https://radyo.yayin.com.tr:4142/strem",
+    "category": "Yerel"
+  },
+  {
+    "name": "SEÇ FM",
+    "streamUrl": "https://live.radyo.in/8066/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "SIZIR FM",
+    "streamUrl": "http://stream.radiojar.com/tamm1f7kk48uv",
+    "category": "Yerel"
+  },
+  {
+    "name": "SOFT RADYO",
+    "streamUrl": "https://radyo.softradyo.com/1140/stream",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "SUPER FM 2 TURKEY",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER2_SC?/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "SZC",
+    "streamUrl": "https://cdn.tecostream.xyz/Sozcu_Tv.m3u8",
+    "category": "TV (Video)"
+  },
+  {
+    "name": "Serhat FM",
+    "streamUrl": "http://yayin.serhatfm.com:9150/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "Sezen Radyo",
+    "streamUrl": "http://radyo1.radyo-dinle.tc:8038/",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Show radio",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/show/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Slow Turk",
+    "streamUrl": "https://radyo.duhnet.tv/ak_dtvh_slowturk",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Standart.fm",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/standartfm/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Super Fm",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER_FM_SC",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "SÜPER SHOW RADYO",
+    "streamUrl": "https://sslyayin.netyayin.net:6065/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Süper 2 FM",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER2_SC.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Süper FM",
+    "streamUrl": "http://provisioning.streamtheworld.com/pls/SUPER_FMAAC.pls",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Süper Fm",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER2_SC",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "TGRT FM",
+    "streamUrl": "http://b01c02nl.mediatriple.net/videoonlylive/mtsxxkzwwuqtglive/broadcast_5fead000e2128.smil/playlist.m3u8",
+    "category": "Haber"
+  },
+  {
+    "name": "TOKAT FM",
+    "streamUrl": "https://sssx.radyosfer.com/tokatfm/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "TRD 4",
+    "streamUrl": "https://stream.zeno.fm/x5n4sfyy9nhvv",
+    "category": "Yerel"
+  },
+  {
+    "name": "TRT Antalya",
+    "streamUrl": "https://radio-trtantalya.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT Diyarbakır",
+    "streamUrl": "https://radio-trtgap.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT Erzurum",
+    "streamUrl": "https://radio-trterzurum.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT FM",
+    "streamUrl": "https://trt.radyotvonline.net/trtfm",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT Memleketim FM",
+    "streamUrl": "https://radio-trtmemleketimfm.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT NAĞME",
+    "streamUrl": "https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT Nağme",
+    "streamUrl": "https://rd-trtnagme.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT Radyo 1",
+    "streamUrl": "https://trt.radyotvonline.net/trt1",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT Radyo Haber",
+    "streamUrl": "https://radio-trtradyohaber.live.trt.com.tr/master.m3u8",
+    "category": "Haber"
+  },
+  {
+    "name": "TRT Radyo Kurdî",
+    "streamUrl": "https://radio-trtradyo6.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT TSR",
+    "streamUrl": "https://radio-trttsr.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT Trabzon",
+    "streamUrl": "https://radio-trttrabzon.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT Türkü",
+    "streamUrl": "https://rd-trtturku.medya.trt.com.tr/master_128.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT Çukurova",
+    "streamUrl": "https://radio-trtcukurova.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TRT3",
+    "streamUrl": "http://rd-trtradyo3.medya.trt.com.tr/master.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "TURKUVAZ EFSANE",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/turkuvazefsane/playlist.m3u8",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "TURKUVAZ NOSTALJİ",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/turkuvaznostalji/playlist.m3u8",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "TURKUVAZ ROMANTİK",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/turkuvazromantik/playlist.m3u8",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Tarkan",
+    "streamUrl": "https://stream.pcradio.ru/tarkan-hi",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Tarsus FM",
+    "streamUrl": "https://tarsusfm.80.yayin.com.tr//stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "Tezene",
+    "streamUrl": "http://37.247.98.8/stream/22/.mp3?%26token=Bsx3vK2u28-xMp98IZDV2Q%26expires=1618686860%27%20type=%27audio/mp3%27&rd2=%27https://radyo.vip/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "TheRockRadio",
+    "streamUrl": "https://ssl4.radyotvonline.com/radyohome/therockradio.stream/playlist.m3u8",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "Trt Spor",
+    "streamUrl": "https://rd-trtradyo1.medya.trt.com.tr/master_128.m3u8",
+    "category": "TRT"
+  },
+  {
+    "name": "Turku Radyo",
+    "streamUrl": "http://radyo.turkuradyo.net:4591/listen.pls",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Turkuaz Anadolu",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/turkuvazanadolu/playlist.m3u8",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Turkuvaz Anadolu",
+    "streamUrl": "http://trkvz-radyolar.ercdn.net/turkuvazanadolu/Playlist.m3u8",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Turkuvaz Musiki",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/turkuvazmusiki/playlist.m3u8",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Türkiyem FM",
+    "streamUrl": "https://server7.streamserver24.com/proxy/turkiyemfm?mp=/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Türkü Radyo",
+    "streamUrl": "https://eu8.fastcast4u.com/proxy/ugur4129?mp=/1",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "TürküRadyo",
+    "streamUrl": "https://yayin.turkhosted.com/4591/stream",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "Türkülerle Türkiye",
+    "streamUrl": "http://37.247.98.8/stream/22/;",
+    "category": "Türkü & Halk"
+  },
+  {
+    "name": "TİME TÜRK",
+    "streamUrl": "https://radyo.yayindakiler.com:4195/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "TİRYAKİ FM",
+    "streamUrl": "https://yayin.turkhosted.com:6056/mp3",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "ULUSAL ARABESK",
+    "streamUrl": "https://radio.guventechnology.com/9334/stream",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "Vav Radyo",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/radyovav/playlist.m3u8",
+    "category": "Dini"
+  },
+  {
+    "name": "Veng RADYO",
+    "streamUrl": "https://live.radyo.in/8012/stream",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "Virgin Radio Türkiye",
+    "streamUrl": "http://29103.live.streamtheworld.com/VIRGIN_RADIO_SC",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "VİBE STATİON",
+    "streamUrl": "https://stream.zeno.fm/528but9e7motv",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "VİRGİN RADYO",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/VIRGIN_RADIO_ITUNES.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "VİZYON NOSTALJİ",
+    "streamUrl": "https://stream.netradyom.com/radio/7090/radio.mp3/;",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "WORLD HİTS",
+    "streamUrl": "http://37.247.98.8/stream/34/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "X Radio",
+    "streamUrl": "http://yayin.radyomadyo.com:8770/",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "YENİ POP",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SC006_SO1AAC.aac",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "YILDIZ FM",
+    "streamUrl": "https://radyo.yayin.com.tr:5940/",
+    "category": "Yerel"
+  },
+  {
+    "name": "YOZGAT FM",
+    "streamUrl": "https://sslyayin.netyayin.net:10921/",
+    "category": "Yerel"
+  },
+  {
+    "name": "Yaren FM",
+    "streamUrl": "https://yarenfmn.80.yayin.com.tr//stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "Yeni Radyo Nostaljinin Sesi",
+    "streamUrl": "https://eu9.fastcast4u.com/tunein/eskininadami.pls",
+    "category": "Arabesk & Nostalji"
+  },
+  {
+    "name": "a PARA",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/apararadyo/playlist.m3u8",
+    "category": "Haber"
+  },
+  {
+    "name": "andromeda radio",
+    "streamUrl": "https://radyo1.radyo-dinle.tc/andromedaradio/stream",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "baba radyo",
+    "streamUrl": "http://officialbabaradyo.radyotvonline.net/babaofficial",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "dinamo.fm caffe",
+    "streamUrl": "http://channels.dinamo.fm/caffe-mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "dinamo.fm deep",
+    "streamUrl": "http://channels.dinamo.fm/deep-mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "dinamo.fm discotheque",
+    "streamUrl": "http://channels.dinamo.fm/discotheque-mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "dinamo.fm fluent",
+    "streamUrl": "http://channels.dinamo.fm/fluent-mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "dinamo.fm legacy",
+    "streamUrl": "http://channels.dinamo.fm/legacy-mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "dinamo.fm live from minimuzikhol",
+    "streamUrl": "http://channels.dinamo.fm/mmradyo-mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "dinamo.fm locodyno",
+    "streamUrl": "http://channels.dinamo.fm/locodyno-mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "dinamo.fm sleep",
+    "streamUrl": "http://channels.dinamo.fm/sleep-mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "dinamo.fm smog",
+    "streamUrl": "http://channels.dinamo.fm/smog-mp3",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "efkar",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/EFKAR.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "https://turkmedya-live.ercdn.net/tv24/tv24.m3u8",
+    "streamUrl": "https://turkmedya-live.ercdn.net/tv24/tv24.m3u8",
+    "category": "TV (Video)"
+  },
+  {
+    "name": "imaj fm",
+    "streamUrl": "https://sslyayin.netyayin.net/imajfm/stream/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "joytürk fm",
+    "streamUrl": "https://playerservices.streamtheworld.com/pls/JOY_TURK.pls",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "literal",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/LITERAL128AAC.aac",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "lokum fm",
+    "streamUrl": "http://37.247.98.9/stream/493/?/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "loops radio",
+    "streamUrl": "https://progressive.ozelip.com/7670/stream",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "meteorolojinin sesi",
+    "streamUrl": "http://radyomgm.canliyayinda.com/;stream.mp3",
+    "category": "Genel"
+  },
+  {
+    "name": "oyunpiyat",
+    "streamUrl": "https://yayin.hostwin.net/8888/stream%20%20oyunpiyatfm",
+    "category": "Genel"
+  },
+  {
+    "name": "playdanceradio",
+    "streamUrl": "https://radyo1.radyo-dinle.tc/playdanceradio/stream",
+    "category": "Dance & Elektronik"
+  },
+  {
+    "name": "pop 90 turkey",
+    "streamUrl": "http://provisioning.streamtheworld.com/pls/POP90AAC.pls",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "power love",
+    "streamUrl": "https://listen.powerapp.com.tr/powerlove/abr/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "power plus",
+    "streamUrl": "https://listen.powerapp.com.tr/powerplus/abr/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "powerturk",
+    "streamUrl": "https://live.powerapp.com.tr/powerturk/abr/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "radio Megasite",
+    "streamUrl": "http://yayin.asymedya.com:8020/listen.pls",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "radyo mezopotamya",
+    "streamUrl": "https://anadolu.liderhost.com.tr/9404/stream",
+    "category": "Kürtçe"
+  },
+  {
+    "name": "radyo mydonose",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_MYDONOSE128AAC.aac?/;stream.mp3",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "radyo viva",
+    "streamUrl": "https://radyoviva.radyotvonline.net/radyovivaaac",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "retro turk",
+    "streamUrl": "http://provisioning.streamtheworld.com/pls/RETROTURKAAC.pls",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "rock station",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/ROCK_STATION128AAC.aac?/;stream.mp3",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "ÇEŞME VİKİNG RADYO",
+    "streamUrl": "https://ip169.ozelip.com/8432/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "ÇINAR FM",
+    "streamUrl": "https://sslyayin.netyayin.net:10992/",
+    "category": "Yerel"
+  },
+  {
+    "name": "ÖMÜR RADYO",
+    "streamUrl": "https://live.sinirsizhost.com/8036/stream",
+    "category": "Yerel"
+  },
+  {
+    "name": "Özel FM",
+    "streamUrl": "https://ozelfm.80.yayin.com.tr/;stream/1",
+    "category": "Yerel"
+  },
+  {
+    "name": "ÜLKÜ RADYO",
+    "streamUrl": "https://radyo.yayindakiler.com:4112/stream.mp3",
+    "category": "Yerel"
+  },
+  {
+    "name": "İNCİTEK FM",
+    "streamUrl": "https://radyo.yayindakiler.com:4204/",
+    "category": "Yerel"
+  },
+  {
+    "name": "İTÜ Klasik",
+    "streamUrl": "http://160.75.86.29:8088/ituklasikmp3",
+    "category": "Klasik & Kültür"
+  },
+  {
+    "name": "İTÜ Radyosu Rock",
+    "streamUrl": "http://160.75.86.29:8095/",
+    "category": "Rock & Alternatif"
+  },
+  {
+    "name": "İstanbul FM",
+    "streamUrl": "https://yayin.istanbulfm.com.tr/istanbulfm/playlist.m3u8",
+    "category": "Pop & Hit"
+  },
+  {
+    "name": "Şafak Radyo",
+    "streamUrl": "http://safakradyo.com:2626/;",
+    "category": "Dini"
+  },
+  {
+    "name": "اذاعة القرآن الكريم 🇹🇷",
+    "streamUrl": "http://stream.radiojar.com/0tpy1h0kxtzuv",
+    "category": "Dini"
+  }
+]

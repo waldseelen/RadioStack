@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-family-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: var(--font-mono), ui-monospace, monospace;
+}
+
+:root {
+  --background: #0a0a0a;
+  --surface: #141414;
+  --accent: #e8ff00;
+}
+
+body {
+  background: var(--background);
+  color: #f5f5f5;
+}
