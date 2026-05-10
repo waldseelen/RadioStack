@@ -55,7 +55,7 @@ SQLite file is created under `prisma/` after `db push`.
 
 ## Tech stack
 
-Next.js 15 · React 19 · Prisma 6 · SQLite · Tailwind CSS 4 · Zustand · lucide-react · Sonner
+Next.js 15.3.6+ (patched for [CVE-2025-66478](https://nextjs.org/blog/CVE-2025-66478)) · React 19 · Prisma 6 · SQLite · Tailwind CSS 4 · Zustand · lucide-react · Sonner
 
 ## License
 
