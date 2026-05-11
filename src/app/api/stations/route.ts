@@ -7,8 +7,9 @@ export async function GET(req: NextRequest) {
         const cat = req.nextUrl.searchParams.get('category')
         const where: {
             deletedAt: null
+            isLive: boolean
             category?: string
-        } = { deletedAt: null }
+        } = { deletedAt: null, isLive: true }
         if (cat && cat !== 'Favorites') {
             where.category = cat
         }

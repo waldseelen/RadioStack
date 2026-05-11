@@ -1,12 +1,12 @@
 'use client'
 
 import type { Station } from '@prisma/client'
-import { Trash2, Upload, Trash, Info, Settings, RefreshCcw, Download, X, FileText, Code, FileJson } from 'lucide-react'
+import { Upload, Trash, Info, Settings, RefreshCcw, Download, X, FileText, Code, FileJson, WifiOff } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState, useRef } from 'react'
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 
-type Tab = 'import' | 'trash' | 'export'
+type Tab = 'import' | 'trash' | 'export' | 'offline'
 type ExportFormat = 'm3u' | 'm3u8' | 'csv' | 'txt' | 'xspf'
 
 interface AdminPanelProps {
@@ -41,6 +41,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
     const [tab, setTab] = useState<Tab>('import')
     const [stations, setStations] = useState<Station[]>([])
     const [trash, setTrash] = useState<Station[]>([])
+    const [offlineStations, setOfflineStations] = useState<Station[]>([])
     const [m3uText, setM3uText] = useState('')
     const [loading, setLoading] = useState(true)
     const [exportFormat, setExportFormat] = useState<ExportFormat>('m3u')
@@ -59,10 +60,16 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         setTrash(data)
     }, [])
 
+    const loadOffline = useCallback(async () => {
+        const res = await fetch('/api/stations/offline')
+        const data = await parseJson<Station[]>(res)
+        setOfflineStations(data)
+    }, [])
+
     const refresh = useCallback(async () => {
         setLoading(true)
         try {
-            await Promise.all([loadActive(), loadTrash()])
+            await Promise.all([loadActive(), loadTrash(), loadOffline()])
         } catch (e) {
             toast.error(e instanceof Error ? e.message : 'Load failed')
         } finally {
@@ -83,6 +90,16 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         }
         return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0]))
     }, [trash])
+
+    const offlineByCategory = useMemo(() => {
+        const m = new Map<string, Station[]>()
+        for (const s of offlineStations) {
+            const c = s.category ?? 'Uncategorized'
+            if (!m.has(c)) m.set(c, [])
+            m.get(c)!.push(s)
+        }
+        return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0]))
+    }, [offlineStations])
 
     const m3uStats = useMemo(() => {
         if (!m3uText.trim()) return { items: 0 }
@@ -174,6 +191,31 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         }
     }
 
+    const restoreOfflineStation = async (id: string) => {
+        const prevOffline = offlineStations
+        const prevStations = stations
+        const st = offlineStations.find((x) => x.id === id)
+        if (!st) return
+        
+        setOfflineStations((off) => off.filter((x) => x.id !== id))
+        setStations((a) => [...a, { ...st, isLive: true }])
+        
+        try {
+            const res = await fetch(`/api/stations/${id}`, { 
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ isLive: true })
+            })
+            await parseJson(res)
+            await Promise.all([loadActive(), loadOffline()])
+            toast.success('Station marked as online')
+        } catch (e) {
+            setOfflineStations(prevOffline)
+            setStations(prevStations)
+            toast.error(e instanceof Error ? e.message : 'Restore failed')
+        }
+    }
+
     const emptyTrash = async () => {
         const snap = trash
         setTrash([])
@@ -215,6 +257,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
     }
 
     const trashCount = trash.length
+    const offlineCount = offlineStations.length
 
     return (
         <div 
@@ -239,6 +282,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                             [
                                 ['import', 'Import', Upload],
                                 ['export', 'Export', Download],
+                                ['offline', `Offline (${offlineCount})`, WifiOff],
                                 ['trash', `Trash (${trashCount})`, Trash],
                             ] as const
                         ).map(([id, label, Icon]) => (
@@ -390,6 +434,63 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                         Start Export ({exportFormat.toUpperCase()})
                                     </button>
                                 </div>
+                            </div>
+                        ) : tab === 'offline' ? (
+                            <div className="max-w-5xl space-y-6 mx-auto animate-in fade-in duration-500">
+                                <div className="flex items-center justify-between p-4 border border-neutral-800 bg-neutral-900/10">
+                                    <div className="flex items-center gap-3">
+                                       <WifiOff className="h-4 w-4 text-neutral-700" />
+                                       <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600">Offline Streams</span>
+                                    </div>
+                                    <div className="text-[10px] uppercase text-neutral-500 font-mono">
+                                        These stations failed health checks and are hidden from the main list.
+                                    </div>
+                                </div>
+                                
+                                {offlineStations.length === 0 ? (
+                                    <div className="border border-dashed border-neutral-900 py-32 text-center text-neutral-800 font-mono text-[10px] uppercase tracking-widest">
+                                        No offline stations found
+                                    </div>
+                                ) : (
+                                    offlineByCategory.map(([cat, list]) => (
+                                        <section key={cat} className="border border-neutral-800 bg-black/20">
+                                            <div className="flex items-center justify-between bg-neutral-900/20 border-b border-neutral-800 px-4 py-2">
+                                                <h2 className="text-[10px] font-bold text-neutral-600 uppercase tracking-widest">{cat}</h2>
+                                                <span className="font-mono text-[9px] text-neutral-700">[{list.length}]</span>
+                                            </div>
+                                            <div className="overflow-x-auto">
+                                                <table className="w-full text-left text-[11px] font-sans">
+                                                    <thead>
+                                                        <tr className="border-b border-neutral-900 text-neutral-700 uppercase tracking-wider text-[9px] font-bold">
+                                                            <th className="px-4 py-3 font-normal">Station Name</th>
+                                                            <th className="px-4 py-3 font-normal">Stream URL</th>
+                                                            <th className="px-4 py-3 text-right font-normal">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody className="divide-y divide-neutral-900">
+                                                        {list.map((s) => (
+                                                            <tr key={s.id} className="hover:bg-neutral-900/10 transition-colors">
+                                                                <td className="px-4 py-3 text-neutral-500 font-medium">{s.name}</td>
+                                                                <td className="px-4 py-3 text-neutral-700 font-mono text-[9px] truncate max-w-[200px]" title={s.streamUrl}>
+                                                                    {s.streamUrl}
+                                                                </td>
+                                                                <td className="px-4 py-3 text-right">
+                                                                    <button
+                                                                        type="button"
+                                                                        className="text-neutral-700 hover:text-accent underline underline-offset-4"
+                                                                        onClick={() => void restoreOfflineStation(s.id)}
+                                                                    >
+                                                                        Mark Online
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </section>
+                                    ))
+                                )}
                             </div>
                         ) : (
                             <div className="max-w-5xl space-y-6 mx-auto animate-in fade-in duration-500">
