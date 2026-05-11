@@ -13,8 +13,11 @@ const mono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Radyo Stack',
-  description: 'M3U radio directory',
+  title: 'RadioStack',
+  description: 'Serious M3U radio directory',
+  icons: {
+    icon: '/icon.svg',
+  },
 }
 
 export default function RootLayout({
@@ -24,9 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
-      <body className="min-h-dvh bg-[#0a0a0a] font-sans antialiased">
+      <body className="min-h-dvh bg-black font-sans antialiased text-neutral-200">
         {children}
-        <Toaster richColors position="top-center" theme="dark" />
+        <Toaster richColors position="bottom-right" theme="dark" />
       </body>
     </html>
   )

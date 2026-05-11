@@ -1,20 +1,21 @@
-import Link from 'next/link'
+'use client'
+
+import { useState } from 'react'
 import { PlayerBar } from '@/components/player-bar'
 import { StationBrowser } from '@/components/station-browser'
+import { AdminPanel } from '@/components/admin-panel'
 
 export default function Home() {
+  const [isAdminOpen, setIsAdminOpen] = useState(false)
+
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8">
-      <div className="mb-4 flex justify-end">
-        <Link
-          href="/admin"
-          className="font-mono text-sm text-[#e8ff00] underline-offset-4 hover:underline"
-        >
-          Admin
-        </Link>
-      </div>
-      <StationBrowser />
+    <main className="mx-auto max-w-7xl px-4 min-h-dvh flex flex-col relative">
+      <StationBrowser onOpenSettings={() => setIsAdminOpen(true)} />
       <PlayerBar />
+
+      {isAdminOpen && (
+        <AdminPanel onClose={() => setIsAdminOpen(false)} />
+      )}
     </main>
   )
 }

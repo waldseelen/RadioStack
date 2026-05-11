@@ -1,82 +1,72 @@
 # RadioStack
 
-Turkish and international radio streams in one place — **Next.js**, **Prisma** (PostgreSQL), **M3U import**, categories, favorites, soft delete, and an admin panel.
+A premium, high-density radio directory and player built for power users. Modernized with a **Linear/Notion-inspired** utility-first design, featuring high-contrast aesthetics and robust station management.
 
-## Features
+Built with **Next.js 15**, **Prisma 6**, **Zustand**, and **Tailwind CSS 4**.
 
-- Browse stations by category, **All**, or **Favorites** (`localStorage` key: `radyo_favorites`)
-- Sticky player with **previous / next** (wrap-around within the current list)
-- Per-station menu: rename, change category, soft delete — optimistic UI + toasts (**Sonner**)
-- Admin: **Stations** (with category-wide soft delete), **M3U import** (rate-limited), **Trash** (restore / empty trash)
-- Seed script loads `prisma/stations.json` and normalizes tiny categories post-seed
+## Key Features
 
-## Prerequisites
+### 🎧 Pro Playback Experience
+- **Persistent Player**: Seamless listening experience with audio that persists even while navigating the settings dashboard.
+- **Smart Navigation**: Sequential and Shuffle playback modes with automatic loop-around.
+- **Hardware Integration**: Full **Media Session API** support for OS-level control via hardware media keys (Play/Pause, Next/Prev).
+- **Stream Monitoring**: Real-time error detection with "Offline" status alerts for failing streams.
+- **Scroll to Active**: Instantly locate your currently playing station in the grid with a single click.
 
-- [Node.js](https://nodejs.org/) 20+
-- [Git](https://git-scm.com/)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (for local Supabase)
+### 🗃️ Advanced Management
+- **Bulk Import Engine**: Rapidly import station lists via M3U/M3U8 text or file uploads with built-in rate limiting.
+- **Multi-Format Export**: Export your curated directory in **M3U, M3U8, CSV, TXT, or XSPF** formats.
+- **Bulk Actions**: Select multiple stations to delete or move categories simultaneously via a dedicated action bar.
+- **Trash & Recovery**: Safe deletion with a full-featured trash bin for individual or categorical restoration.
+
+### 🎨 Premium Interface
+- **High-Density Grid**: Information-dense layout optimized for managing hundreds of stations.
+- **Neon Utility Aesthetic**: Professional dark mode with sharp edges and distinct neon-yellow (`#e8ff00`) accents.
+- **Smart Search**: Real-time filtering with visual highlighting of matching search terms.
+- **Mobile Responsive**: Categorical navigation and grids optimized for fluid use across all devices.
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (using Turbopack)
+- **UI Library**: React 19
+- **Database & ORM**: Prisma 6 with PostgreSQL
+- **State Management**: Zustand
+- **Styling**: Tailwind CSS 4
+- **Icons**: Lucide React
+- **Notifications**: Sonner
 
 ## Setup
 
-```bash
-git clone https://github.com/waldseelen/RadioStack.git
-cd RadioStack
-npm install
-cp .env.example .env.local
-# edit .env.local and set DATABASE_URL
-npx prisma db push
-npx prisma db seed
-npm run dev
-```
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/waldseelen/RadioStack.git
+   cd RadioStack
+   ```
 
-Open [http://localhost:3000](http://localhost:3000). Admin UI: `/admin`.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-## Scripts
+3. **Configure Environment**:
+   ```bash
+   cp .env.example .env.local
+   # Set your DATABASE_URL in .env.local
+   ```
 
-| Command | Description |
-|--------|-------------|
-| `npm run dev` | Next.js dev server (Turbopack) |
-| `npm run build` | `prisma generate` + production build |
-| `npm run start` | Production server |
-| `npm run db:push` | Push Prisma schema to SQLite |
-| `npm run db:seed` | Run `ts-node prisma/seed.ts` (via Prisma seed) |
-| `npm run db:studio` | Prisma Studio |
+4. **Initialize Database**:
+   ```bash
+   npx prisma db push
+   npx prisma db seed
+   ```
 
-## Environment
+5. **Start Development Server**:
+   ```bash
+   npm run dev
+   ```
 
-```bash
-cp .env.example .env.local
-```
-
-Or create `.env.local` with:
-
-```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:54322/postgres"
-```
-
-For local Supabase, run `supabase start` and use the DB URL from `supabase status`.
-For a hosted Supabase project, copy the connection string from the dashboard.
-
-## Supabase CLI (local dev)
-
-```bash
-supabase init
-supabase start
-supabase status
-```
-
-## Vercel CLI (env sync)
-
-```bash
-vercel link
-vercel env add DATABASE_URL
-vercel env pull .env.local
-```
-
-## Tech stack
-
-Next.js 15.3.6+ (patched for [CVE-2025-66478](https://nextjs.org/blog/CVE-2025-66478)) · React 19 · Prisma 6 · SQLite · Tailwind CSS 4 · Zustand · lucide-react · Sonner
+Open [http://localhost:3000](http://localhost:3000). The settings panel is accessible via the "Settings" button next to the search bar.
 
 ## License
 
-MIT (or your choice — add a `LICENSE` file if needed).
+MIT

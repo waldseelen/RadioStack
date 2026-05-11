@@ -3,15 +3,46 @@
 @theme {
   --font-family-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-family-mono: var(--font-mono), ui-monospace, monospace;
+  --color-accent: #e8ff00;
 }
 
 :root {
-  --background: #0a0a0a;
-  --surface: #141414;
-  --accent: #e8ff00;
+  --background: #000000;
 }
 
 body {
   background: var(--background);
-  color: #f5f5f5;
+  color: #ededed;
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Base resets for a cleaner look */
+* {
+  border-color: #262626; /* neutral-800 */
+}
+
+/* Linear-style selection */
+::selection {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Subtle scrollbar for data density */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
 }
