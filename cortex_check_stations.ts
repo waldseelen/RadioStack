@@ -3,7 +3,14 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const CONCURRENCY = 20
 
-async function testStation(s: any, i: number, total: number) {
+interface Result {
+  name: string;
+  url: string;
+  status: string;
+  reason?: string | number;
+}
+
+async function testStation(s: any, i: number, total: number): Promise<Result> {
   try {
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 8000)
@@ -43,7 +50,7 @@ async function checkStations() {
   const stations = await prisma.station.findMany({ where: { deletedAt: null } })
   console.log(`Testing ${stations.length} stations with concurrency ${CONCURRENCY}...\n`)
   
-  const results: any[] = []
+  const results: Result[] = []
   const queue = [...stations]
   let active = 0
   let finished = 0
@@ -71,16 +78,17 @@ async function checkStations() {
     }
     next()
   }).then(async (allResults: any) => {
+    const resultsArray = allResults as Result[]
     console.log('\n--- SCAN COMPLETE ---')
-    const offline = allResults.filter(r => r.status === 'OFFLINE')
-    console.log(`Summary: ${allResults.length} total, ${offline.length} offline.\n`)
+    const offline = resultsArray.filter((r) => r.status === 'OFFLINE')
+    console.log(`Summary: ${resultsArray.length} total, ${offline.length} offline.\n`)
     
     if (offline.length > 0) {
       console.log('OFFLINE STATIONS:')
-      offline.forEach(r => console.log(`- ${r.name} (${r.reason})`))
+      offline.forEach((r) => console.log(`- ${r.name} (${r.reason})`))
       
       console.log('\nMarking them as offline in the database...')
-      const offlineUrls = offline.map(r => r.url)
+      const offlineUrls = offline.map((r) => r.url)
       await prisma.station.updateMany({
           where: { streamUrl: { in: offlineUrls } },
           data: { isLive: false }
