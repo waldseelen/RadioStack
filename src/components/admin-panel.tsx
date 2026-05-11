@@ -75,7 +75,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         } finally {
             setLoading(false)
         }
-    }, [loadActive, loadTrash])
+    }, [loadActive, loadTrash, loadOffline])
 
     useEffect(() => {
         void refresh()

@@ -17,6 +17,7 @@ type Props = {
   onRename: (name: string) => Promise<void>
   onChangeCategory: (category: string | null) => Promise<void>
   onSoftDelete: () => Promise<void>
+  onMarkOffline?: () => Promise<void>
   searchQuery?: string
   isSelected?: boolean
   onSelect?: (selected: boolean) => void
@@ -46,6 +47,7 @@ export function StationCard({
   onRename,
   onChangeCategory,
   onSoftDelete,
+  onMarkOffline,
   searchQuery = '',
   isSelected = false,
   onSelect,
@@ -285,6 +287,22 @@ export function StationCard({
                   </div>
                 ) : null}
               </div>
+              {onMarkOffline && (
+                  <button
+                    type="button"
+                    className="block w-full px-3 py-1.5 text-left font-sans text-xs text-orange-400 hover:bg-orange-950 hover:text-orange-300 border-t border-neutral-800"
+                    onClick={async () => {
+                      setMenuOpen(false)
+                      try {
+                        await onMarkOffline()
+                      } catch {
+                        toast.error('Could not mark as offline')
+                      }
+                    }}
+                  >
+                    Mark Offline
+                  </button>
+              )}
               <button
                 type="button"
                 className="block w-full px-3 py-1.5 text-left font-sans text-xs text-red-400 hover:bg-red-950 hover:text-red-300 border-t border-neutral-800"

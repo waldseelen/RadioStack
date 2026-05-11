@@ -3,7 +3,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const CONCURRENCY = 20
 
-async function testStation(s, i, total) {
+async function testStation(s: any, i: number, total: number) {
   try {
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 8000)

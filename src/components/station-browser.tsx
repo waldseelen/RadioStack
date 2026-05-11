@@ -189,6 +189,24 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
         }
     }
 
+    const handleMarkOffline = async (id: string) => {
+        const prev = stations
+        removeLocal(id)
+        try {
+            const res = await fetch(`/api/stations/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ isLive: false }),
+            })
+            await parseJson(res)
+            toast.success('Station marked as offline')
+        } catch (e) {
+            setStations(prev)
+            toast.error(e instanceof Error ? e.message : 'Mark offline failed')
+            throw e
+        }
+    }
+
     // Bulk Actions
     const handleBulkDelete = async () => {
         const ids = Array.from(selectedIds)
@@ -391,6 +409,7 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
                             onRename={(name) => handleRename(st.id, name)}
                             onChangeCategory={(cat) => handleCategory(st.id, cat)}
                             onSoftDelete={() => handleDelete(st.id)}
+                            onMarkOffline={() => handleMarkOffline(st.id)}
                             searchQuery={search}
                             isSelected={selectedIds.has(st.id)}
                             onSelect={(sel) => toggleSelect(st.id, sel)}
