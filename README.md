@@ -1,6 +1,6 @@
 # RadioStack
 
-Turkish and international radio streams in one place — **Next.js**, **Prisma** (SQLite), **M3U import**, categories, favorites, soft delete, and an admin panel.
+Turkish and international radio streams in one place — **Next.js**, **Prisma** (PostgreSQL), **M3U import**, categories, favorites, soft delete, and an admin panel.
 
 ## Features
 
@@ -14,6 +14,7 @@ Turkish and international radio streams in one place — **Next.js**, **Prisma**
 
 - [Node.js](https://nodejs.org/) 20+
 - [Git](https://git-scm.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (for local Supabase)
 
 ## Setup
 
@@ -21,6 +22,8 @@ Turkish and international radio streams in one place — **Next.js**, **Prisma**
 git clone https://github.com/waldseelen/RadioStack.git
 cd RadioStack
 npm install
+cp .env.example .env.local
+# edit .env.local and set DATABASE_URL
 npx prisma db push
 npx prisma db seed
 npm run dev
@@ -42,16 +45,33 @@ Open [http://localhost:3000](http://localhost:3000). Admin UI: `/admin`.
 ## Environment
 
 ```bash
-cp .env.example .env
+cp .env.example .env.local
 ```
 
-Or create `.env` with:
+Or create `.env.local` with:
 
 ```env
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="postgresql://postgres:postgres@localhost:54322/postgres"
 ```
 
-SQLite file is created under `prisma/` after `db push`.
+For local Supabase, run `supabase start` and use the DB URL from `supabase status`.
+For a hosted Supabase project, copy the connection string from the dashboard.
+
+## Supabase CLI (local dev)
+
+```bash
+supabase init
+supabase start
+supabase status
+```
+
+## Vercel CLI (env sync)
+
+```bash
+vercel link
+vercel env add DATABASE_URL
+vercel env pull .env.local
+```
 
 ## Tech stack
 

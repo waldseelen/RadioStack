@@ -1,3 +1,18 @@
+-- Schema
+CREATE TABLE IF NOT EXISTS "Station" (
+	id text PRIMARY KEY,
+	name text NOT NULL,
+	"streamUrl" text NOT NULL,
+	logo text,
+	category text,
+	"isLive" boolean NOT NULL DEFAULT true,
+	"deletedAt" timestamptz,
+	"createdAt" timestamptz NOT NULL DEFAULT now(),
+	"updatedAt" timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS "Station_streamUrl_key" ON "Station" ("streamUrl");
+
 -- Seed stations
 INSERT INTO "Station" (id, name, "streamUrl", category, "isLive", "createdAt", "updatedAt") VALUES
 ('station_1', '101.1Megasite', 'http://37.247.98.8/stream/30/', 'Pop & Hit', true, now(), now()),

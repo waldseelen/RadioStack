@@ -1,8 +1,9 @@
-import { prisma } from '@/lib/prisma'
+import { getPrisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
     try {
+        const prisma = getPrisma()
         const cat = req.nextUrl.searchParams.get('category')
         const where: {
             deletedAt: null
@@ -27,6 +28,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
     try {
+        const prisma = getPrisma()
         const body = await req.json()
         const name = typeof body.name === 'string' ? body.name.trim() : ''
         const streamUrl = typeof body.streamUrl === 'string' ? body.streamUrl.trim() : ''
