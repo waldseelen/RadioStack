@@ -43,7 +43,7 @@ async function checkStations() {
   const stations = await prisma.station.findMany({ where: { deletedAt: null } })
   console.log(`Testing ${stations.length} stations with concurrency ${CONCURRENCY}...\n`)
   
-  const results = []
+  const results: any[] = []
   const queue = [...stations]
   let active = 0
   let finished = 0
@@ -70,7 +70,7 @@ async function checkStations() {
       }
     }
     next()
-  }).then(async (allResults) => {
+  }).then(async (allResults: any) => {
     console.log('\n--- SCAN COMPLETE ---')
     const offline = allResults.filter(r => r.status === 'OFFLINE')
     console.log(`Summary: ${allResults.length} total, ${offline.length} offline.\n`)
