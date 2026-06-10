@@ -1,8 +1,33 @@
-import { readFileSync } from 'fs'
+import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
-import { PrismaClient } from '@prisma/client'
+import * as admin from 'firebase-admin'
 
-const prisma = new PrismaClient()
+// Initialize firebase admin
+const projectId = process.env.FIREBASE_PROJECT_ID || 'radiostack-dev-67a8'
+const clientEmail = process.env.FIREBASE_CLIENT_EMAIL
+const privateKey = process.env.FIREBASE_PRIVATE_KEY
+
+if (clientEmail && privateKey) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId,
+      clientEmail,
+      privateKey: privateKey.replace(/\\n/g, '\n'),
+    }),
+  })
+} else {
+  const localKeyPath = join(__dirname, '../firebase-service-account.json')
+  if (existsSync(localKeyPath)) {
+    const localKey = JSON.parse(readFileSync(localKeyPath, 'utf8'))
+    admin.initializeApp({
+      credential: admin.credential.cert(localKey),
+    })
+  } else {
+    admin.initializeApp({ projectId })
+  }
+}
+
+const db = admin.firestore()
 
 type Row = { name: string; streamUrl: string; category: string }
 
@@ -40,12 +65,11 @@ function similarity(a: string, b: string): number {
 
 async function mergeCategoriesToMinThree() {
   const MAX_ITERS = 500
+  const stationsRef = db.collection('stations')
 
   for (let iter = 0; iter < MAX_ITERS; iter++) {
-    const rows = await prisma.station.findMany({
-      where: { deletedAt: null },
-      select: { id: true, category: true },
-    })
+    const snapshot = await stationsRef.where('deletedAt', '==', null).get()
+    const rows = snapshot.docs.map(doc => ({ id: doc.id, category: doc.data().category }))
 
     const byCat = new Map<string, string[]>()
     for (const r of rows) {
@@ -82,80 +106,114 @@ async function mergeCategoriesToMinThree() {
     const donor = small[0]
     const target = pickTarget(donor.category)
 
-    await prisma.station.updateMany({
-      where: { id: { in: donor.ids }, deletedAt: null },
-      data: { category: target },
+    const batch = db.batch()
+    donor.ids.forEach((id) => {
+      batch.update(stationsRef.doc(id), { category: target, updatedAt: new Date() })
     })
+    await batch.commit()
   }
 
-  const finalGroups = await prisma.station.groupBy({
-    by: ['category'],
-    where: { deletedAt: null },
-    _count: { _all: true },
-  })
+  // Final check for still small categories
+  const snapshot = await stationsRef.where('deletedAt', '==', null).get()
+  const rows = snapshot.docs.map(doc => ({ id: doc.id, category: doc.data().category }))
 
-  const stillSmall = finalGroups.filter(
-    (g) => g.category && g._count._all > 0 && g._count._all < 3,
+  const byCat = new Map<string, number>()
+  for (const r of rows) {
+    const c = r.category ?? 'Uncategorized'
+    byCat.set(c, (byCat.get(c) || 0) + 1)
+  }
+
+  const stillSmall = [...byCat.entries()].filter(
+    ([category, count]) => category && count > 0 && count < 3
   )
+
   if (stillSmall.length) {
-    const biggest = [...finalGroups].sort(
-      (a, b) => b._count._all - a._count._all,
-    )[0]
-    const sink = biggest?.category ?? 'Pop & Hit'
-    for (const g of stillSmall) {
-      if (!g.category || g.category === sink) continue
-      await prisma.station.updateMany({
-        where: { category: g.category, deletedAt: null },
-        data: { category: sink },
+    const biggest = [...byCat.entries()].sort((a, b) => b[1] - a[1])[0]
+    const sink = biggest ? biggest[0] : 'Pop & Hit'
+    
+    const batch = db.batch()
+    let batchCount = 0
+
+    for (const [cat] of stillSmall) {
+      if (!cat || cat === sink) continue
+      const toMove = snapshot.docs.filter(doc => doc.data().category === cat)
+      toMove.forEach(doc => {
+        batch.update(doc.ref, { category: sink, updatedAt: new Date() })
+        batchCount++
       })
+    }
+    if (batchCount > 0) {
+      await batch.commit()
     }
   }
 }
 
 async function applyMergeMap() {
+  const stationsRef = db.collection('stations')
   for (const [from, to] of Object.entries(mergeMap)) {
-    await prisma.station.updateMany({
-      where: { category: from, deletedAt: null },
-      data: { category: to },
-    })
+    const snapshot = await stationsRef
+      .where('category', '==', from)
+      .where('deletedAt', '==', null)
+      .get()
+
+    if (!snapshot.empty) {
+      const batch = db.batch()
+      snapshot.docs.forEach((doc) => {
+        batch.update(doc.ref, { category: to, updatedAt: new Date() })
+      })
+      await batch.commit()
+    }
   }
 }
 
 async function main() {
   const path = join(__dirname, 'stations.json')
   const stations = JSON.parse(readFileSync(path, 'utf-8')) as Row[]
+  const stationsRef = db.collection('stations')
+
+  console.log(`Seeding started: ${stations.length} stations...`)
 
   for (const station of stations) {
-    await prisma.station.upsert({
-      where: { streamUrl: station.streamUrl },
-      update: {
+    const existingSnap = await stationsRef.where('streamUrl', '==', station.streamUrl).get()
+    const now = new Date()
+
+    if (!existingSnap.empty) {
+      await existingSnap.docs[0].ref.update({
         name: station.name,
         category: station.category,
-      },
-      create: {
+        updatedAt: now,
+      })
+    } else {
+      await stationsRef.add({
         name: station.name,
         streamUrl: station.streamUrl,
         category: station.category,
         isLive: true,
-      },
-    })
+        deletedAt: null,
+        createdAt: now,
+        updatedAt: now,
+      })
+    }
   }
 
-  console.log(`Seed tamamlandı: ${stations.length} kanal`)
+  console.log(`Seed loaded successfully in Firestore!`)
 
   await applyMergeMap()
   await mergeCategoriesToMinThree()
 
-  const dist = await prisma.station.groupBy({
-    by: ['category'],
-    where: { deletedAt: null },
-    _count: { _all: true },
+  // Get final category distribution
+  const snapshot = await stationsRef.where('deletedAt', '==', null).get()
+  const distMap = new Map<string, number>()
+  snapshot.docs.forEach(doc => {
+    const cat = doc.data().category || 'Uncategorized'
+    distMap.set(cat, (distMap.get(cat) || 0) + 1)
   })
+
   console.log(
     'Kategori dağılımı (min 3 kontrol):',
-    dist
-      .filter((g) => g.category)
-      .sort((a, b) => a.category!.localeCompare(b.category!)),
+    [...distMap.entries()]
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([category, count]) => ({ category, count }))
   )
 }
 
@@ -164,4 +222,3 @@ main()
     console.error(e)
     process.exit(1)
   })
-  .finally(() => prisma.$disconnect())

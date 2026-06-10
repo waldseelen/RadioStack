@@ -24,3 +24,7 @@ prisma/dev.db-journal
 .DS_Store
 *.tsbuildinfo
 .vercel
+
+# firebase
+firebase-service-account.json
+

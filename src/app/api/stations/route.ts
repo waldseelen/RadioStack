@@ -1,22 +1,29 @@
-import { getPrisma } from '@/lib/prisma'
+import { getDb, serializeDoc } from '@/lib/firebase'
 import { NextRequest, NextResponse } from 'next/server'
+import { verifyAuth } from '@/lib/auth'
 
 export async function GET(req: NextRequest) {
     try {
-        const prisma = getPrisma()
+        const db = getDb()
         const cat = req.nextUrl.searchParams.get('category')
-        const where: {
-            deletedAt: null
-            isLive: boolean
-            category?: string
-        } = { deletedAt: null, isLive: true }
+        
+        let query = db.collection('stations')
+            .where('deletedAt', '==', null)
+            .where('isLive', '==', true)
+
         if (cat && cat !== 'Favorites') {
-            where.category = cat
+            query = query.where('category', '==', cat)
         }
 
-        const stations = await prisma.station.findMany({
-            where,
-            orderBy: [{ category: 'asc' }, { name: 'asc' }],
+        const snapshot = await query.get()
+        const stations = snapshot.docs.map(serializeDoc)
+
+        stations.sort((a, b) => {
+            const catA = a.category || ''
+            const catB = b.category || ''
+            const catCompare = catA.localeCompare(catB)
+            if (catCompare !== 0) return catCompare
+            return a.name.localeCompare(b.name)
         })
 
         return NextResponse.json(stations)
@@ -29,7 +36,12 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
     try {
-        const prisma = getPrisma()
+        const decoded = await verifyAuth(req)
+        if (!decoded || decoded.email !== 'admin@radiostack.com') {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        const db = getDb()
         const body = await req.json()
         const name = typeof body.name === 'string' ? body.name.trim() : ''
         const streamUrl = typeof body.streamUrl === 'string' ? body.streamUrl.trim() : ''
@@ -46,18 +58,32 @@ export async function POST(req: NextRequest) {
             )
         }
 
-        const station = await prisma.station.create({
-            data: {
-                name,
-                streamUrl,
-                category,
-                logo,
-                isLive: true,
-            },
+        const stationsRef = db.collection('stations')
+        const existingSnap = await stationsRef.where('streamUrl', '==', streamUrl).get()
+        if (!existingSnap.empty) {
+            return NextResponse.json(
+                { error: 'A station with this stream URL already exists' },
+                { status: 400 },
+            )
+        }
+
+        const now = new Date()
+        const docRef = await stationsRef.add({
+            name,
+            streamUrl,
+            category,
+            logo,
+            isLive: true,
+            deletedAt: null,
+            createdAt: now,
+            updatedAt: now,
         })
-        return NextResponse.json(station)
+        const docSnap = await docRef.get()
+        return NextResponse.json(serializeDoc(docSnap))
     } catch (e: unknown) {
         const msg = e instanceof Error ? e.message : 'Create failed'
         return NextResponse.json({ error: msg }, { status: 400 })
     }
 }
+
+

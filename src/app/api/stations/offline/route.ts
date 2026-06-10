@@ -1,15 +1,28 @@
-import { getPrisma } from '@/lib/prisma'
-import { NextResponse } from 'next/server'
+import { getDb, serializeDoc } from '@/lib/firebase'
+import { NextRequest, NextResponse } from 'next/server'
+import { verifyAuth } from '@/lib/auth'
 
-export async function GET() {
+export async function GET(req: NextRequest) {
     try {
-        const prisma = getPrisma()
-        const stations = await prisma.station.findMany({
-            where: {
-                deletedAt: null,
-                isLive: false,
-            },
-            orderBy: [{ category: 'asc' }, { name: 'asc' }],
+        const decoded = await verifyAuth(req)
+        if (!decoded || decoded.email !== 'admin@radiostack.com') {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        const db = getDb()
+        const snapshot = await db.collection('stations')
+            .where('deletedAt', '==', null)
+            .where('isLive', '==', false)
+            .get()
+
+        const stations = snapshot.docs.map(serializeDoc)
+
+        stations.sort((a, b) => {
+            const catA = a.category || ''
+            const catB = b.category || ''
+            const catCompare = catA.localeCompare(catB)
+            if (catCompare !== 0) return catCompare
+            return a.name.localeCompare(b.name)
         })
 
         return NextResponse.json(stations)
@@ -18,3 +31,5 @@ export async function GET() {
         return NextResponse.json({ error: msg }, { status: 500 })
     }
 }
+
+

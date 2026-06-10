@@ -1,5 +1,6 @@
 import { create } from 'zustand'
-import type { Station } from '@prisma/client'
+import type { Station } from '@/types/station'
+
 
 export type { Station }
 

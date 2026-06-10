@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Check, Heart, MoreHorizontal, Radio, Play, Pause, AlertCircle } from 'lucide-react'
-import type { Station } from '@prisma/client'
+import type { Station } from '@/types/station'
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 import { usePlayerStore } from '@/stores/player-store'
+import { useAuthStore } from '@/stores/auth-store'
 
 type Props = {
   station: Station
@@ -15,6 +16,7 @@ type Props = {
   onToggleFavorite: () => void
   onPlay: () => void
   onRename: (name: string) => Promise<void>
+  onChangeLogo?: (logo: string | null) => Promise<void>
   onChangeCategory: (category: string | null) => Promise<void>
   onSoftDelete: () => Promise<void>
   onMarkOffline?: () => Promise<void>
@@ -45,6 +47,7 @@ export function StationCard({
   onToggleFavorite,
   onPlay,
   onRename,
+  onChangeLogo,
   onChangeCategory,
   onSoftDelete,
   onMarkOffline,
@@ -58,10 +61,16 @@ export function StationCard({
   const [catOpen, setCatOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement | null>(null)
   
+  // Storage Logo Upload States
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [uploadingLogo, setUploadingLogo] = useState(false)
+
   const currentStation = usePlayerStore((s) => s.currentStation)
   const isPlaying = usePlayerStore((s) => s.isPlaying)
   const streamError = usePlayerStore((s) => s.streamError)
   const isActive = currentStation?.id === station.id
+  
+  const isAdmin = useAuthStore((s) => s.isAdmin)
 
   useEffect(() => {
     setNameDraft(station.name)
@@ -93,6 +102,33 @@ export function StationCard({
     setRenaming(false)
   }
 
+  // Firebase Storage Logo Upload Handler
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setUploadingLogo(true)
+    const toastId = toast.loading('Logo Firebase Storage\'a yükleniyor...')
+    try {
+      const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage')
+      const { storage } = await import('@/lib/firebase-client')
+      
+      const fileRef = ref(storage, `station-logos/${station.id}-${Date.now()}-${file.name}`)
+      await uploadBytes(fileRef, file)
+      const downloadUrl = await getDownloadURL(fileRef)
+      
+      if (onChangeLogo) {
+        await onChangeLogo(downloadUrl)
+      }
+      toast.success('Logo başarıyla güncellendi.', { id: toastId })
+    } catch (err: unknown) {
+      console.error(err)
+      const msg = err instanceof Error ? err.message : 'Unknown error'
+      toast.error('Logo yükleme hatası: ' + msg, { id: toastId })
+    } finally {
+      setUploadingLogo(false)
+    }
+  }
+
   return (
     <div
       id={`station-${station.id}`}
@@ -103,16 +139,29 @@ export function StationCard({
         isSelected ? 'bg-accent/10 border-accent/40' : ''
       )}
     >
-      {/* Selection Checkbox */}
-      <div 
-        className={cn(
-            "flex items-center justify-center w-5 h-5 border transition-all cursor-pointer",
-            isSelected ? "bg-accent border-accent" : "border-neutral-800 group-hover:border-neutral-700 bg-black"
-        )}
-        onClick={() => onSelect?.(!isSelected)}
-      >
-        {isSelected && <Check className="h-3.5 w-3.5 text-black" strokeWidth={4} />}
-      </div>
+      {/* Hidden File Input for Logo Upload */}
+      {isAdmin && onChangeLogo && (
+        <input 
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          accept="image/*"
+          className="hidden"
+        />
+      )}
+
+      {/* Selection Checkbox (Admins Only) */}
+      {isAdmin && (
+        <div 
+          className={cn(
+              "flex items-center justify-center w-5 h-5 border transition-all cursor-pointer shrink-0",
+              isSelected ? "bg-accent border-accent" : "border-neutral-800 group-hover:border-neutral-700 bg-black"
+          )}
+          onClick={() => onSelect?.(!isSelected)}
+        >
+          {isSelected && <Check className="h-3.5 w-3.5 text-black" strokeWidth={4} />}
+        </div>
+      )}
 
       {/* Play/Pause Button Area */}
       <button
@@ -224,102 +273,120 @@ export function StationCard({
           )}
         </button>
 
-        {/* Station Menu */}
-        <div ref={menuRef} className="relative">
-          <button
-            type="button"
-            className="p-1.5 text-neutral-500 hover:bg-neutral-800 hover:text-white"
-            aria-label="Station menu"
-            onClick={(e) => {
-              e.stopPropagation()
-              setMenuOpen((v) => !v)
-              setCatOpen(false)
-            }}
-          >
-            <MoreHorizontal className="h-3.5 w-3.5" />
-          </button>
-          {menuOpen ? (
-            <div
-              className="absolute right-0 bottom-full z-40 mb-1 min-w-[160px] border border-neutral-800 bg-[#0a0a0a] py-1 shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
+        {/* Station Menu (Admins Only) */}
+        {isAdmin && (
+          <div ref={menuRef} className="relative">
+            <button
+              type="button"
+              className="p-1.5 text-neutral-500 hover:bg-neutral-800 hover:text-white"
+              aria-label="Station menu"
+              onClick={(e) => {
+                e.stopPropagation()
+                setMenuOpen((v) => !v)
+                setCatOpen(false)
+              }}
             >
-              <button
-                type="button"
-                className="block w-full px-3 py-1.5 text-left font-sans text-xs text-neutral-300 hover:bg-neutral-800 hover:text-white"
-                onClick={() => {
-                  setRenaming(true)
-                  setMenuOpen(false)
-                }}
+              <MoreHorizontal className="h-3.5 w-3.5" />
+            </button>
+            {menuOpen ? (
+              <div
+                className="absolute right-0 bottom-full z-40 mb-1 min-w-[160px] border border-neutral-800 bg-[#0a0a0a] py-1 shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
               >
-                Rename
-              </button>
-              <div className="relative border-t border-neutral-800">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between px-3 py-1.5 text-left font-sans text-xs text-neutral-300 hover:bg-neutral-800 hover:text-white"
-                  onClick={() => setCatOpen((v) => !v)}
+                  className="block w-full px-3 py-1.5 text-left font-sans text-xs text-neutral-300 hover:bg-neutral-800 hover:text-white"
+                  onClick={() => {
+                    setRenaming(true)
+                    setMenuOpen(false)
+                  }}
                 >
-                  Change Category
+                  Rename
                 </button>
-                {catOpen ? (
-                  <div className="max-h-48 overflow-auto border-t border-neutral-800 bg-black">
-                    {categories.map((c) => (
-                      <button
-                        key={c}
-                        type="button"
-                        className={cn(
-                          'block w-full px-3 py-1.5 text-left font-sans text-xs text-neutral-400 hover:bg-neutral-800 hover:text-white',
-                          station.category === c && 'font-medium text-white',
-                        )}
-                        onClick={async () => {
-                          try {
-                            await onChangeCategory(c)
-                            setCatOpen(false)
-                            setMenuOpen(false)
-                          } catch {
-                            toast.error('Could not update category')
-                          }
-                        }}
-                      >
-                        {c}
-                      </button>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-              {onMarkOffline && (
+
+                {/* Logo Upload Trigger */}
+                {onChangeLogo && (
                   <button
                     type="button"
-                    className="block w-full px-3 py-1.5 text-left font-sans text-xs text-orange-400 hover:bg-orange-950 hover:text-orange-300 border-t border-neutral-800"
-                    onClick={async () => {
+                    className="block w-full px-3 py-1.5 text-left font-sans text-xs text-neutral-300 hover:bg-neutral-800 hover:text-white border-t border-neutral-900"
+                    onClick={() => {
+                      fileInputRef.current?.click()
                       setMenuOpen(false)
-                      try {
-                        await onMarkOffline()
-                      } catch {
-                        toast.error('Could not mark as offline')
-                      }
                     }}
+                    disabled={uploadingLogo}
                   >
-                    Mark Offline
+                    {uploadingLogo ? 'Logo Yükleniyor...' : 'Logo Değiştir'}
                   </button>
-              )}
-              <button
-                type="button"
-                className="block w-full px-3 py-1.5 text-left font-sans text-xs text-red-400 hover:bg-red-950 hover:text-red-300 border-t border-neutral-800"
-                onClick={async () => {
-                  setMenuOpen(false)
-                  try {
-                    await onSoftDelete()
-                  } catch {
-                    toast.error('Could not delete')
-                  }
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          ) : null}
-        </div>
+                )}
+
+                <div className="relative border-t border-neutral-800">
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between px-3 py-1.5 text-left font-sans text-xs text-neutral-300 hover:bg-neutral-800 hover:text-white"
+                    onClick={() => setCatOpen((v) => !v)}
+                  >
+                    Change Category
+                  </button>
+                  {catOpen ? (
+                    <div className="max-h-48 overflow-auto border-t border-neutral-800 bg-black">
+                      {categories.map((c) => (
+                        <button
+                          key={c}
+                          type="button"
+                          className={cn(
+                            'block w-full px-3 py-1.5 text-left font-sans text-xs text-neutral-400 hover:bg-neutral-800 hover:text-white',
+                            station.category === c && 'font-medium text-white',
+                          )}
+                          onClick={async () => {
+                            try {
+                              await onChangeCategory(c)
+                              setCatOpen(false)
+                              setMenuOpen(false)
+                            } catch {
+                              toast.error('Could not update category')
+                            }
+                          }}
+                        >
+                          {c}
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+                {onMarkOffline && (
+                    <button
+                      type="button"
+                      className="block w-full px-3 py-1.5 text-left font-sans text-xs text-orange-400 hover:bg-orange-950 hover:text-orange-300 border-t border-neutral-800"
+                      onClick={async () => {
+                        setMenuOpen(false)
+                        try {
+                          await onMarkOffline()
+                        } catch {
+                          toast.error('Could not mark as offline')
+                        }
+                      }}
+                    >
+                      Mark Offline
+                    </button>
+                )}
+                <button
+                  type="button"
+                  className="block w-full px-3 py-1.5 text-left font-sans text-xs text-red-400 hover:bg-red-950 hover:text-red-300 border-t border-neutral-800"
+                  onClick={async () => {
+                    setMenuOpen(false)
+                    try {
+                      await onSoftDelete()
+                    } catch {
+                      toast.error('Could not delete')
+                    }
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            ) : null}
+          </div>
+        )}
       </div>
     </div>
   )

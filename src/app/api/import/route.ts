@@ -1,6 +1,7 @@
-import { getPrisma } from '@/lib/prisma'
+import { getDb } from '@/lib/firebase'
 import { rateLimit } from '@/lib/rate-limit'
 import { NextRequest, NextResponse } from 'next/server'
+import { verifyAuth } from '@/lib/auth'
 
 function clientIp(req: NextRequest): string {
     const fwd = req.headers.get('x-forwarded-for')
@@ -37,17 +38,22 @@ function parseM3U(text: string): { name: string; streamUrl: string }[] {
 }
 
 export async function POST(req: NextRequest) {
-    const ip = clientIp(req)
-    const lim = rateLimit(`import:${ip}`, 3, 60_000)
-    if (!lim.ok) {
-        return NextResponse.json(
-            { error: 'Rate limited', retryAfterSec: lim.retryAfterSec },
-            { status: 429, headers: { 'Retry-After': String(lim.retryAfterSec) } },
-        )
-    }
-
     try {
-        const prisma = getPrisma()
+        const decoded = await verifyAuth(req)
+        if (!decoded || decoded.email !== 'admin@radiostack.com') {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        const ip = clientIp(req)
+        const lim = rateLimit(`import:${ip}`, 3, 60_000)
+        if (!lim.ok) {
+            return NextResponse.json(
+                { error: 'Rate limited', retryAfterSec: lim.retryAfterSec },
+                { status: 429, headers: { 'Retry-After': String(lim.retryAfterSec) } },
+            )
+        }
+
+        const db = getDb()
         const ct = req.headers.get('content-type') ?? ''
         let text: string
         let defaultCategory: string | null = null
@@ -70,26 +76,32 @@ export async function POST(req: NextRequest) {
         const parsed = parseM3U(text)
         let created = 0
         let updated = 0
+        const stationsRef = db.collection('stations')
 
         for (const row of parsed) {
-            const existing = await prisma.station.findUnique({
-                where: { streamUrl: row.streamUrl },
-            })
-            await prisma.station.upsert({
-                where: { streamUrl: row.streamUrl },
-                update: {
+            const existingSnap = await stationsRef.where('streamUrl', '==', row.streamUrl).get()
+            const now = new Date()
+
+            if (!existingSnap.empty) {
+                const docRef = existingSnap.docs[0].ref
+                await docRef.update({
                     name: row.name,
                     ...(defaultCategory ? { category: defaultCategory } : {}),
-                },
-                create: {
+                    updatedAt: now,
+                })
+                updated += 1
+            } else {
+                await stationsRef.add({
                     name: row.name,
                     streamUrl: row.streamUrl,
                     category: defaultCategory,
                     isLive: true,
-                },
-            })
-            if (existing) updated += 1
-            else created += 1
+                    deletedAt: null,
+                    createdAt: now,
+                    updatedAt: now,
+                })
+                created += 1
+            }
         }
 
         return NextResponse.json({ created, updated, total: parsed.length })
@@ -98,3 +110,5 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: msg }, { status: 500 })
     }
 }
+
+

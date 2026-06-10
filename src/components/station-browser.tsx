@@ -3,11 +3,15 @@
 import { StationCard } from '@/components/station-card'
 import { useFavorites } from '@/hooks/use-favorites'
 import { usePlayerStore } from '@/stores/player-store'
-import type { Station } from '@prisma/client'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import type { Station } from '@/types/station'
+import { useCallback, useEffect, useMemo, useState, useRef } from 'react'
 import { toast } from 'sonner'
-import { Search, ListFilter, Activity, Settings, CheckSquare, Trash2, FolderEdit, X, Info } from 'lucide-react'
+import { Search, ListFilter, Activity, Settings, CheckSquare, Trash2, FolderEdit, X, Info, LogIn, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useAuthStore } from '@/stores/auth-store'
+import { AuthModal } from '@/components/auth-modal'
+import { db } from '@/lib/firebase-client'
+import { collection, query, where, onSnapshot } from 'firebase/firestore'
 
 type CatFilter = string | 'All' | 'Favorites'
 
@@ -47,32 +51,63 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
     const [loading, setLoading] = useState(true)
     const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
     
+    // Auth and Modal states
+    const [isAuthOpen, setIsAuthOpen] = useState(false)
+    const { user, idToken, isAdmin, logout } = useAuthStore()
+
     const { ids: favoriteIds, toggle, isFavorite } = useFavorites()
     const { setStation, togglePlay, currentStation } = usePlayerStore()
 
-    const load = useCallback(async () => {
-        setLoading(true)
-        try {
-            const [stRes, catRes] = await Promise.all([
-                fetch('/api/stations'),
-                fetch('/api/categories'),
-            ])
-            const [st, cats] = await Promise.all([
-                parseJson<Station[]>(stRes),
-                parseJson<string[]>(catRes),
-            ])
-            setStations(st)
-            setCategories(cats)
-        } catch (e) {
-            toast.error(e instanceof Error ? e.message : 'Failed to load stations')
-        } finally {
-            setLoading(false)
-        }
-    }, [])
-
+    // Realtime Sync using Firestore onSnapshot
     useEffect(() => {
-        void load()
-    }, [load])
+        const stationsRef = collection(db, 'stations')
+        const q = query(
+            stationsRef,
+            where('deletedAt', '==', null),
+            where('isLive', '==', true)
+        )
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const list: Station[] = []
+            snapshot.forEach((doc) => {
+                const data = doc.data()
+                list.push({
+                    id: doc.id,
+                    name: data.name || '',
+                    streamUrl: data.streamUrl || '',
+                    logo: data.logo || null,
+                    category: data.category || null,
+                    isLive: data.isLive !== false,
+                    deletedAt: data.deletedAt ? (data.deletedAt.toDate ? data.deletedAt.toDate().toISOString() : new Date(data.deletedAt).toISOString()) : null,
+                    createdAt: data.createdAt ? (data.createdAt.toDate ? data.createdAt.toDate().toISOString() : new Date(data.createdAt).toISOString()) : undefined,
+                    updatedAt: data.updatedAt ? (data.updatedAt.toDate ? data.updatedAt.toDate().toISOString() : new Date(data.updatedAt).toISOString()) : undefined,
+                })
+            })
+
+            // Sort alphabetically by category, then name
+            list.sort((a, b) => {
+                const catA = a.category || ''
+                const catB = b.category || ''
+                const catCompare = catA.localeCompare(catB)
+                if (catCompare !== 0) return catCompare
+                return a.name.localeCompare(b.name)
+            })
+
+            setStations(list)
+
+            // Dynamic categories extraction
+            const cats = Array.from(new Set(list.map(s => s.category).filter((c): c is string => !!c)))
+            cats.sort((a, b) => a.localeCompare(b))
+            setCategories(cats)
+            setLoading(false)
+        }, (error) => {
+            console.error("Firestore onSnapshot error:", error)
+            toast.error("İstasyonlar senkronize edilemedi.")
+            setLoading(false)
+        })
+
+        return () => unsubscribe()
+    }, [])
 
     // Keyboard Shortcuts
     useEffect(() => {
@@ -146,7 +181,10 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
         try {
             const res = await fetch(`/api/stations/${id}`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
                 body: JSON.stringify({ name }),
             })
             await parseJson<Station>(res)
@@ -157,18 +195,40 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
         }
     }
 
+    const handleLogoChange = async (id: string, logo: string | null) => {
+        const prev = stations
+        patchLocal(id, { logo })
+        try {
+            const res = await fetch(`/api/stations/${id}`, {
+                method: 'PATCH',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
+                body: JSON.stringify({ logo }),
+            })
+            await parseJson<Station>(res)
+            toast.success('Logo güncellendi.')
+        } catch (e) {
+            setStations(prev)
+            toast.error(e instanceof Error ? e.message : 'Logo güncelleme başarısız')
+            throw e
+        }
+    }
+
     const handleCategory = async (id: string, category: string | null) => {
         const prev = stations
         patchLocal(id, { category })
         try {
             const res = await fetch(`/api/stations/${id}`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
                 body: JSON.stringify({ category }),
             })
             await parseJson<Station>(res)
-            const catRes = await fetch('/api/categories')
-            setCategories(await parseJson<string[]>(catRes))
         } catch (e) {
             setStations(prev)
             toast.error(e instanceof Error ? e.message : 'Update failed')
@@ -180,7 +240,10 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
         const prev = stations
         removeLocal(id)
         try {
-            const res = await fetch(`/api/stations/${id}`, { method: 'DELETE' })
+            const res = await fetch(`/api/stations/${id}`, { 
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${idToken}` }
+            })
             await parseJson(res)
         } catch (e) {
             setStations(prev)
@@ -195,7 +258,10 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
         try {
             const res = await fetch(`/api/stations/${id}`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
                 body: JSON.stringify({ isLive: false }),
             })
             await parseJson(res)
@@ -217,7 +283,10 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
         setSelectedIds(new Set())
         
         try {
-            await Promise.all(ids.map(id => fetch(`/api/stations/${id}`, { method: 'DELETE' })))
+            await Promise.all(ids.map(id => fetch(`/api/stations/${id}`, { 
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${idToken}` }
+            })))
             toast.success(`${ids.length} stations deleted`)
         } catch {
             setStations(prev)
@@ -238,11 +307,12 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
         try {
             await Promise.all(ids.map(id => fetch(`/api/stations/${id}`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
                 body: JSON.stringify({ category: cat }),
             })))
-            const catRes = await fetch('/api/categories')
-            setCategories(await parseJson<string[]>(catRes))
             toast.success(`Category updated for ${ids.length} stations`)
         } catch {
             setStations(prev)
@@ -300,6 +370,63 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
         setSelectedIds(next)
     }
 
+    // SANAL LİSTE (VIRTUAL GRID) ALGORİTMASI
+    const gridRef = useRef<HTMLDivElement>(null)
+    const [scrollTop, setScrollTop] = useState(0)
+    const [cols, setCols] = useState(4)
+    const [gridOffsetTop, setGridOffsetTop] = useState(350)
+    const rowHeight = 59 // 58px card height + 1px grid gap
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollTop(window.scrollY)
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    useEffect(() => {
+        const updateColsAndOffset = () => {
+            const w = window.innerWidth
+            if (w < 768) setCols(1)
+            else if (w < 1024) setCols(2)
+            else if (w < 1280) setCols(3)
+            else setCols(4)
+
+            if (gridRef.current) {
+                setGridOffsetTop(gridRef.current.offsetTop)
+            }
+        }
+        updateColsAndOffset()
+        window.addEventListener('resize', updateColsAndOffset)
+        return () => window.removeEventListener('resize', updateColsAndOffset)
+    }, [filteredStations, filter, search])
+
+    // Gruplandırılmış Rows hesabı
+    const rows = useMemo(() => {
+        const chunked = []
+        for (let i = 0; i < filteredStations.length; i += cols) {
+            chunked.push(filteredStations.slice(i, i + cols))
+        }
+        return chunked
+    }, [filteredStations, cols])
+
+    // Görünür Row sınırları
+    const { startRow, endRow, paddingTop, paddingBottom } = useMemo(() => {
+        const startY = Math.max(0, scrollTop - gridOffsetTop - 300) // 300px yukarı arabellek
+        const endY = scrollTop - gridOffsetTop + (typeof window !== 'undefined' ? window.innerHeight : 800) + 300 // 300px aşağı arabellek
+        
+        const start = Math.max(0, Math.floor(startY / rowHeight))
+        const end = Math.min(rows.length, Math.ceil(endY / rowHeight))
+
+        return {
+            startRow: start,
+            endRow: end,
+            paddingTop: start * rowHeight,
+            paddingBottom: (rows.length - end) * rowHeight
+        }
+    }, [scrollTop, gridOffsetTop, rows.length])
+
     return (
         <div className="pb-32 font-sans">
             {/* Header / Command Bar - Sticky */}
@@ -314,7 +441,7 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
 
                     <div className="flex items-center gap-2">
                         {/* Search Input */}
-                        <div className="relative group w-48 md:w-64">
+                        <div className="relative group w-40 md:w-64">
                             <div className="absolute left-2.5 top-1/2 -translate-y-1/2 text-neutral-500">
                                 <Search className="h-3.5 w-3.5" />
                             </div>
@@ -327,22 +454,51 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
                             />
                         </div>
 
+                        {/* Giriş Yap / Profil Butonu */}
+                        {user ? (
+                            <div className="flex items-center gap-1.5">
+                                <span className="hidden md:inline font-mono text-[9px] text-neutral-500 uppercase truncate max-w-[120px]" title={user.email || ''}>
+                                    {user.email?.split('@')[0]}
+                                </span>
+                                <button
+                                    onClick={() => {
+                                        void logout()
+                                        toast.success('Çıkış yapıldı.')
+                                    }}
+                                    className="flex items-center gap-1.5 h-8 px-2.5 bg-neutral-900 border border-red-950/40 hover:border-red-900 text-red-500 hover:text-red-400 font-mono text-[9px] uppercase font-bold transition-all cursor-pointer"
+                                >
+                                    <LogOut className="h-3.5 w-3.5" />
+                                    <span className="hidden sm:inline">Çıkış</span>
+                                </button>
+                            </div>
+                        ) : (
+                            <button
+                                onClick={() => setIsAuthOpen(true)}
+                                className="flex items-center gap-1.5 h-8 px-2.5 bg-neutral-900 border border-neutral-800 font-mono text-[9px] uppercase font-bold text-accent hover:text-white hover:border-neutral-600 transition-all group cursor-pointer"
+                            >
+                                <LogIn className="h-3.5 w-3.5" />
+                                <span className="hidden sm:inline">Giriş Yap</span>
+                            </button>
+                        )}
+
                         {/* Settings Button */}
-                        <button
-                            onClick={onOpenSettings}
-                            className="flex items-center gap-2 h-8 px-3 bg-neutral-900 border border-neutral-800 font-mono text-[10px] uppercase font-bold text-accent hover:text-white hover:border-neutral-600 transition-all group"
-                        >
-                            <Settings className="h-3.5 w-3.5 group-hover:rotate-90 transition-transform duration-500" />
-                            <span className="hidden sm:inline">Settings</span>
-                        </button>
+                        {isAdmin && (
+                            <button
+                                onClick={onOpenSettings}
+                                className="flex items-center gap-2 h-8 px-3 bg-neutral-900 border border-neutral-800 font-mono text-[10px] uppercase font-bold text-accent hover:text-white hover:border-neutral-600 transition-all group cursor-pointer"
+                            >
+                                <Settings className="h-3.5 w-3.5 group-hover:rotate-90 transition-transform duration-500" />
+                                <span className="hidden sm:inline">Yönetim</span>
+                            </button>
+                        )}
                     </div>
                 </div>
 
-                {/* Categories - Two Rows & Responsive */}
+                {/* Categories */}
                 <div className="mt-4 border-t border-neutral-800 pt-4 space-y-2">
                     <div className="flex items-center justify-center gap-2 mb-2 text-neutral-700">
                         <ListFilter className="h-3 w-3" />
-                        <span className="font-mono text-[9px] uppercase tracking-[0.2em]">Categories</span>
+                        <span className="font-mono text-[9px] uppercase tracking-[0.2em]">Kategoriler</span>
                     </div>
                     
                     <div className="flex flex-col gap-1.5 max-w-full overflow-x-auto pb-2 scrollbar-hide">
@@ -396,24 +552,32 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
                     <p className="font-mono text-[10px] text-neutral-600 uppercase tracking-widest animate-pulse">Syncing directory...</p>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-neutral-800 border border-neutral-800">
-                    {filteredStations.map((st) => (
-                        <StationCard
-                            key={st.id}
-                            station={st}
-                            categories={categories}
-                            hideCategoryLabel={!!hideCategory}
-                            isFavorite={isFavorite(st.id)}
-                            onToggleFavorite={() => toggle(st.id)}
-                            onPlay={() => play(st)}
-                            onRename={(name) => handleRename(st.id, name)}
-                            onChangeCategory={(cat) => handleCategory(st.id, cat)}
-                            onSoftDelete={() => handleDelete(st.id)}
-                            onMarkOffline={() => handleMarkOffline(st.id)}
-                            searchQuery={search}
-                            isSelected={selectedIds.has(st.id)}
-                            onSelect={(sel) => toggleSelect(st.id, sel)}
-                        />
+                <div 
+                    ref={gridRef}
+                    style={{ paddingTop, paddingBottom }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-neutral-800 border border-neutral-800"
+                >
+                    {rows.slice(startRow, endRow).map((row) => (
+                        row.map((st) => (
+
+                            <StationCard
+                                key={st.id}
+                                station={st}
+                                categories={categories}
+                                hideCategoryLabel={!!hideCategory}
+                                isFavorite={isFavorite(st.id)}
+                                onToggleFavorite={() => toggle(st.id)}
+                                onPlay={() => play(st)}
+                                onRename={(name) => handleRename(st.id, name)}
+                                onChangeLogo={(logoUrl) => handleLogoChange(st.id, logoUrl)}
+                                onChangeCategory={(cat) => handleCategory(st.id, cat)}
+                                onSoftDelete={() => handleDelete(st.id)}
+                                onMarkOffline={() => handleMarkOffline(st.id)}
+                                searchQuery={search}
+                                isSelected={selectedIds.has(st.id)}
+                                onSelect={(sel) => toggleSelect(st.id, sel)}
+                            />
+                        ))
                     ))}
                 </div>
             )}
@@ -431,13 +595,18 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
                             : "Try adjusting your search or category filters to find what you're looking for."}
                     </p>
                     <button 
-                        onClick={() => { setSearch(''); setFilter('All'); load(); }}
+                        onClick={() => { setSearch(''); setFilter('All'); }}
                         className="px-6 py-2 bg-neutral-800 text-neutral-300 font-mono text-[10px] uppercase font-bold tracking-widest hover:bg-accent hover:text-black transition-all"
                     >
                         Reset All Filters
                     </button>
                 </div>
             ) : null}
+
+            {/* Giriş Modalı */}
+            {isAuthOpen && (
+                <AuthModal onClose={() => setIsAuthOpen(false)} />
+            )}
         </div>
     )
 }

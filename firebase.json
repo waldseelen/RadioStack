@@ -1,0 +1,16 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "auth": {
+    "providers": {
+      "emailPassword": {
+        "enabled": true
+      }
+    }
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}
+

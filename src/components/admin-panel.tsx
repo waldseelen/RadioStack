@@ -1,10 +1,13 @@
 'use client'
 
-import type { Station } from '@prisma/client'
-import { Upload, Trash, Info, Settings, RefreshCcw, Download, X, FileText, Code, FileJson, WifiOff } from 'lucide-react'
+import type { Station } from '@/types/station'
+import { Upload, Trash, Info, Settings, RefreshCcw, Download, X, FileText, Code, FileJson, WifiOff, LogOut, Key } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState, useRef } from 'react'
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
+import { useAuthStore } from '@/stores/auth-store'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/lib/firebase-client'
 
 type Tab = 'import' | 'trash' | 'export' | 'offline'
 type ExportFormat = 'm3u' | 'm3u8' | 'csv' | 'txt' | 'xspf'
@@ -46,7 +49,28 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
     const [loading, setLoading] = useState(true)
     const [exportFormat, setExportFormat] = useState<ExportFormat>('m3u')
     
+    // Auth States
+    const { user, loading: authLoading, isAdmin, idToken, logout } = useAuthStore()
+    const [adminEmail, setAdminEmail] = useState('')
+    const [adminPassword, setAdminPassword] = useState('')
+    const [loginLoading, setLoginLoading] = useState(false)
+
     const modalRef = useRef<HTMLDivElement>(null)
+
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setLoginLoading(true)
+        try {
+            await signInWithEmailAndPassword(auth, adminEmail, adminPassword)
+            toast.success('Yönetici girişi başarılı!')
+        } catch (err: unknown) {
+            console.error(err)
+            toast.error('Giriş başarısız. Lütfen bilgilerinizi kontrol edin.')
+        } finally {
+            setLoginLoading(false)
+        }
+    }
+
 
     const loadActive = useCallback(async () => {
         const res = await fetch('/api/stations')
@@ -55,18 +79,25 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
     }, [])
 
     const loadTrash = useCallback(async () => {
-        const res = await fetch('/api/stations/trash')
+        if (!idToken) return
+        const res = await fetch('/api/stations/trash', {
+            headers: { 'Authorization': `Bearer ${idToken}` }
+        })
         const data = await parseJson<Station[]>(res)
         setTrash(data)
-    }, [])
+    }, [idToken])
 
     const loadOffline = useCallback(async () => {
-        const res = await fetch('/api/stations/offline')
+        if (!idToken) return
+        const res = await fetch('/api/stations/offline', {
+            headers: { 'Authorization': `Bearer ${idToken}` }
+        })
         const data = await parseJson<Station[]>(res)
         setOfflineStations(data)
-    }, [])
+    }, [idToken])
 
     const refresh = useCallback(async () => {
+        if (!isAdmin) return
         setLoading(true)
         try {
             await Promise.all([loadActive(), loadTrash(), loadOffline()])
@@ -75,11 +106,13 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         } finally {
             setLoading(false)
         }
-    }, [loadActive, loadTrash, loadOffline])
+    }, [isAdmin, loadActive, loadTrash, loadOffline])
 
     useEffect(() => {
-        void refresh()
-    }, [refresh])
+        if (isAdmin) {
+            void refresh()
+        }
+    }, [isAdmin, refresh])
 
     const trashByCategory = useMemo(() => {
         const m = new Map<string, Station[]>()
@@ -162,7 +195,10 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         setTrash((t) => t.filter((x) => x.id !== id))
         setStations((a) => [...a, { ...st, deletedAt: null }])
         try {
-            const res = await fetch(`/api/stations/${id}/restore`, { method: 'POST' })
+            const res = await fetch(`/api/stations/${id}/restore`, { 
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${idToken}` }
+            })
             await parseJson(res)
             await Promise.all([loadActive(), loadTrash()])
         } catch (e) {
@@ -181,6 +217,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         try {
             const res = await fetch(`/api/categories/${encodeURIComponent(name)}/restore`, {
                 method: 'POST',
+                headers: { 'Authorization': `Bearer ${idToken}` }
             })
             await parseJson(res)
             await Promise.all([loadActive(), loadTrash()])
@@ -203,7 +240,10 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         try {
             const res = await fetch(`/api/stations/${id}`, { 
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
                 body: JSON.stringify({ isLive: true })
             })
             await parseJson(res)
@@ -220,7 +260,10 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         const snap = trash
         setTrash([])
         try {
-            const res = await fetch('/api/stations/trash', { method: 'DELETE' })
+            const res = await fetch('/api/stations/trash', { 
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${idToken}` }
+            })
             await parseJson(res)
             await loadActive()
         } catch (e) {
@@ -244,7 +287,10 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         try {
             const res = await fetch('/api/import', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
                 body: JSON.stringify({ content: m3uText }),
             })
             const data = await parseJson<{ created: number; updated: number; total: number }>(res)
@@ -259,6 +305,76 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
     const trashCount = trash.length
     const offlineCount = offlineStations.length
 
+    // Loading State
+    if (authLoading) {
+        return (
+            <div className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+                <div className="flex flex-col items-center justify-center gap-4">
+                    <div className="h-5 w-5 border-2 border-neutral-800 border-t-accent rounded-full animate-spin" />
+                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-neutral-600">Yönetim Oturumu Kontrol Ediliyor</p>
+                </div>
+            </div>
+        )
+    }
+
+    // Login Screen if not Admin
+    if (!user || !isAdmin) {
+        return (
+            <div 
+                className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+                onClick={(e) => e.target === e.currentTarget && onClose()}
+            >
+                <div className="w-full max-w-md bg-black border border-neutral-800 shadow-2xl p-8 relative">
+                    <button 
+                        onClick={onClose} 
+                        className="absolute top-4 right-4 p-2 text-neutral-500 hover:text-white transition-colors"
+                        type="button"
+                    >
+                        <X className="h-4 w-4" />
+                    </button>
+                    <div className="flex flex-col items-center mb-6">
+                        <div className="bg-neutral-900 p-3 border border-neutral-800 mb-3 text-accent shadow-[0_0_10px_rgba(232,255,0,0.1)]">
+                            <Key className="h-6 w-6" />
+                        </div>
+                        <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-200">Yönetici Girişi</h2>
+                        <p className="text-[10px] text-neutral-500 uppercase tracking-wider mt-1.5 text-center">RadioStack idari paneline erişmek için oturum açın</p>
+                    </div>
+                    <form onSubmit={handleLogin} className="space-y-4">
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-bold uppercase text-neutral-600 block">E-Posta</label>
+                            <input 
+                                type="email" 
+                                required
+                                placeholder="admin@domain.com"
+                                value={adminEmail}
+                                onChange={(e) => setAdminEmail(e.target.value)}
+                                className="w-full h-10 bg-neutral-950 border border-neutral-800 focus:border-accent px-4 text-xs text-neutral-300 outline-none transition-colors"
+                            />
+                        </div>
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-bold uppercase text-neutral-600 block">Şifre</label>
+                            <input 
+                                type="password" 
+                                required
+                                placeholder="••••••••"
+                                value={adminPassword}
+                                onChange={(e) => setAdminPassword(e.target.value)}
+                                className="w-full h-10 bg-neutral-950 border border-neutral-800 focus:border-accent px-4 text-xs text-neutral-300 outline-none transition-colors"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            disabled={loginLoading}
+                            className="w-full py-3 mt-2 bg-accent text-black text-[10px] font-bold uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-40 shadow-[0_0_15px_rgba(232,255,0,0.1)]"
+                        >
+                            {loginLoading ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div 
             className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 md:p-12 animate-in fade-in duration-300"
@@ -268,22 +384,22 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                 ref={modalRef}
                 className="w-full max-w-5xl h-full max-h-[800px] bg-black border border-neutral-800 shadow-2xl flex overflow-hidden rounded-none"
             >
-                {/* Compact Sidebar */}
+                {/* Sidebar */}
                 <aside className="w-16 md:w-56 border-r border-neutral-800 flex flex-col bg-black">
                     <div className="p-4 border-b border-neutral-800 flex items-center gap-3">
                         <div className="bg-neutral-900 p-1 border border-neutral-700 shrink-0">
                            <Settings className="h-4 w-4 text-accent" />
                         </div>
-                        <span className="hidden md:block text-[11px] font-bold uppercase tracking-widest text-accent">Settings</span>
+                        <span className="hidden md:block text-[11px] font-bold uppercase tracking-widest text-accent">Ayarlar</span>
                     </div>
 
                     <nav className="flex-1 p-2 flex flex-col gap-1 mt-4">
                         {(
                             [
-                                ['import', 'Import', Upload],
-                                ['export', 'Export', Download],
+                                ['import', 'İçeri Aktar', Upload],
+                                ['export', 'Dışarı Aktar', Download],
                                 ['offline', `Offline (${offlineCount})`, WifiOff],
-                                ['trash', `Trash (${trashCount})`, Trash],
+                                ['trash', `Çöp Kutusu (${trashCount})`, Trash],
                             ] as const
                         ).map(([id, label, Icon]) => (
                             <button
@@ -303,6 +419,19 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                         ))}
                     </nav>
 
+                    {/* Admin Logout Button */}
+                    <button
+                        onClick={() => {
+                            void logout();
+                            toast.success('Çıkış yapıldı.');
+                        }}
+                        className="flex items-center gap-3 px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-red-500 hover:text-red-400 hover:bg-red-950/20 border-t border-neutral-800 transition-all cursor-pointer"
+                        title="Çıkış Yap"
+                    >
+                        <LogOut className="h-4 w-4 shrink-0" />
+                        <span className="hidden md:block truncate">Çıkış Yap</span>
+                    </button>
+
                     <div className="p-4 border-t border-neutral-800 hidden md:block">
                          <p className="text-[9px] font-mono text-neutral-700 uppercase tracking-widest">RadioStack v1.2</p>
                     </div>
@@ -312,7 +441,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                 <div className="flex-1 flex flex-col min-w-0 bg-[#050505]">
                     <header className="h-14 border-b border-neutral-800 flex items-center justify-between px-6 bg-black">
                         <div className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest">
-                           <span className="text-neutral-600">Settings</span>
+                           <span className="text-neutral-600">Ayarlar</span>
                            <span className="text-neutral-800">/</span>
                            <span className="text-accent uppercase">{tab}</span>
                         </div>
@@ -338,19 +467,19 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                         {loading && stations.length === 0 ? (
                             <div className="flex flex-col items-center justify-center h-full gap-4">
                                 <div className="h-5 w-5 border-2 border-neutral-800 border-t-accent rounded-full animate-spin" />
-                                <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-neutral-600">Synchronizing Data</p>
+                                <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-neutral-600">Veriler Senkronize Ediliyor</p>
                             </div>
                         ) : tab === 'import' ? (
                             <div className="max-w-2xl border border-neutral-800 bg-black/40 mx-auto animate-in fade-in duration-500">
                                 <div className="p-4 border-b border-neutral-800 bg-neutral-900/20 flex items-center gap-2">
                                    <Upload className="h-4 w-4 text-accent" />
-                                   <h2 className="text-[11px] font-bold uppercase tracking-wider text-accent">Data Import Engine</h2>
+                                   <h2 className="text-[11px] font-bold uppercase tracking-wider text-accent">M3U Playlist Yükleme Motoru</h2>
                                 </div>
                                 
                                 <div className="p-6 space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-bold uppercase text-neutral-600">Upload File</label>
+                                            <label className="text-[10px] font-bold uppercase text-neutral-600">Dosya Yükle</label>
                                             <input 
                                                 type="file" 
                                                 accept=".m3u,.m3u8,.txt"
@@ -360,7 +489,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                         </div>
                                         <div className="flex items-center gap-3 bg-neutral-950 p-4 border border-neutral-900 text-[9px] text-neutral-600 leading-relaxed font-medium uppercase tracking-wider">
                                             <Info className="h-4 w-4 text-neutral-800 shrink-0" />
-                                            <span>You can select a file or paste raw playlist data below.</span>
+                                            <span>M3U listenizi dosyadan seçebilir veya aşağıdaki alana yapıştırabilirsiniz.</span>
                                         </div>
                                     </div>
 
@@ -373,7 +502,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                         />
                                         {m3uStats.items > 0 && (
                                            <div className="absolute bottom-4 right-4 bg-accent text-black px-2 py-1 font-mono text-[9px] font-bold">
-                                              {m3uStats.items} RECORDS DETECTED
+                                              {m3uStats.items} RADYO TESPİT EDİLDİ
                                            </div>
                                         )}
                                     </div>
@@ -385,7 +514,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                             className="px-8 py-2.5 bg-accent text-black text-[10px] font-bold uppercase tracking-widest hover:scale-105 active:scale-95 disabled:opacity-30 transition-all shadow-[0_0_15px_rgba(232,255,0,0.2)]"
                                             onClick={() => void submitImport()}
                                         >
-                                            Process and Save
+                                            Yükle ve Kaydet
                                         </button>
                                     </div>
                                 </div>
@@ -394,7 +523,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                             <div className="max-w-2xl border border-neutral-800 bg-black/40 mx-auto animate-in fade-in duration-500">
                                 <div className="p-4 border-b border-neutral-800 bg-neutral-900/20 flex items-center gap-2">
                                    <Download className="h-4 w-4 text-accent" />
-                                   <h2 className="text-[11px] font-bold uppercase tracking-wider text-accent">Data Export</h2>
+                                   <h2 className="text-[11px] font-bold uppercase tracking-wider text-accent">Veri Dışarı Aktarımı</h2>
                                 </div>
                                 
                                 <div className="p-10 space-y-8">
@@ -417,13 +546,13 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                     </div>
 
                                     <div className="bg-neutral-950 p-6 border border-neutral-900">
-                                        <h3 className="text-[10px] font-bold uppercase text-neutral-500 mb-2">Format Summary</h3>
+                                        <h3 className="text-[10px] font-bold uppercase text-neutral-500 mb-2">Format Özeti</h3>
                                         <p className="text-[11px] text-neutral-600 leading-relaxed uppercase tracking-wider">
-                                            {exportFormat === 'm3u' && 'Standard media playlist format.'}
-                                            {exportFormat === 'm3u8' && 'Enhanced playlist with UTF-8 support.'}
-                                            {exportFormat === 'csv' && 'Comma separated values for Excel and databases.'}
-                                            {exportFormat === 'txt' && 'Plain text list containing names and URLs.'}
-                                            {exportFormat === 'xspf' && 'XML based advanced media sharing format.'}
+                                            {exportFormat === 'm3u' && 'Standart medya çalma listesi formatı.'}
+                                            {exportFormat === 'm3u8' && 'UTF-8 karakter desteğine sahip çalma listesi.'}
+                                            {exportFormat === 'csv' && 'Veritabanı ve Excel için virgülle ayrılmış değerler.'}
+                                            {exportFormat === 'txt' && 'Sadece radyo adı ve yayın adreslerini içeren düz metin.'}
+                                            {exportFormat === 'xspf' && 'XML tabanlı gelişmiş medya paylaşım formatı.'}
                                         </p>
                                     </div>
 
@@ -431,7 +560,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                         onClick={handleExport}
                                         className="w-full py-4 bg-accent text-black text-[11px] font-bold uppercase tracking-[0.2em] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(232,255,0,0.15)]"
                                     >
-                                        Start Export ({exportFormat.toUpperCase()})
+                                        Dışarı Aktarmayı Başlat ({exportFormat.toUpperCase()})
                                     </button>
                                 </div>
                             </div>
@@ -440,16 +569,16 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                 <div className="flex items-center justify-between p-4 border border-neutral-800 bg-neutral-900/10">
                                     <div className="flex items-center gap-3">
                                        <WifiOff className="h-4 w-4 text-neutral-700" />
-                                       <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600">Offline Streams</span>
+                                       <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600">Çevrimdışı İstasyonlar</span>
                                     </div>
                                     <div className="text-[10px] uppercase text-neutral-500 font-mono">
-                                        These stations failed health checks and are hidden from the main list.
+                                        Sağlık taramasında başarısız olan ve listeden gizlenen radyolar.
                                     </div>
                                 </div>
                                 
                                 {offlineStations.length === 0 ? (
                                     <div className="border border-dashed border-neutral-900 py-32 text-center text-neutral-800 font-mono text-[10px] uppercase tracking-widest">
-                                        No offline stations found
+                                        Çevrimdışı radyo bulunamadı
                                     </div>
                                 ) : (
                                     offlineByCategory.map(([cat, list]) => (
@@ -462,9 +591,9 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                                 <table className="w-full text-left text-[11px] font-sans">
                                                     <thead>
                                                         <tr className="border-b border-neutral-900 text-neutral-700 uppercase tracking-wider text-[9px] font-bold">
-                                                            <th className="px-4 py-3 font-normal">Station Name</th>
-                                                            <th className="px-4 py-3 font-normal">Stream URL</th>
-                                                            <th className="px-4 py-3 text-right font-normal">Action</th>
+                                                            <th className="px-4 py-3 font-normal">Radyo Adı</th>
+                                                            <th className="px-4 py-3 font-normal">Yayın Adresi</th>
+                                                            <th className="px-4 py-3 text-right font-normal">İşlem</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody className="divide-y divide-neutral-900">
@@ -480,7 +609,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                                                         className="text-neutral-700 hover:text-accent underline underline-offset-4"
                                                                         onClick={() => void restoreOfflineStation(s.id)}
                                                                     >
-                                                                        Mark Online
+                                                                        Aktif Et
                                                                     </button>
                                                                 </td>
                                                             </tr>
@@ -497,7 +626,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                 <div className="flex items-center justify-between p-4 border border-neutral-800 bg-neutral-900/10">
                                     <div className="flex items-center gap-3">
                                        <Trash className="h-4 w-4 text-neutral-700" />
-                                       <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600">Archived Records</span>
+                                       <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600">Arşivlenmiş İstasyonlar</span>
                                     </div>
                                     <button
                                         type="button"
@@ -505,13 +634,13 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                         className="px-4 py-2 border border-red-900/20 bg-red-950/5 text-red-700 text-[10px] font-bold uppercase tracking-widest hover:bg-red-900 hover:text-white disabled:opacity-20 transition-all"
                                         onClick={() => void emptyTrash()}
                                     >
-                                        Wipe Recycle Bin
+                                        Çöp Kutusunu Temizle
                                     </button>
                                 </div>
                                 
                                 {trash.length === 0 ? (
                                     <div className="border border-dashed border-neutral-900 py-32 text-center text-neutral-800 font-mono text-[10px] uppercase tracking-widest">
-                                        Recycle bin is empty
+                                        Çöp kutusu boş
                                     </div>
                                 ) : (
                                     trashByCategory.map(([cat, list]) => (
@@ -523,16 +652,16 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                                     className="text-[9px] font-bold uppercase text-neutral-700 hover:text-white transition-colors"
                                                     onClick={() => void restoreCategory(cat)}
                                                 >
-                                                    Restore Category
+                                                    Kategoriyi Kurtar
                                                 </button>
                                             </div>
                                             <div className="overflow-x-auto">
                                                 <table className="w-full text-left text-[11px] font-sans">
                                                     <thead>
                                                         <tr className="border-b border-neutral-900 text-neutral-700 uppercase tracking-wider text-[9px] font-bold">
-                                                            <th className="px-4 py-3 font-normal">Station Name</th>
-                                                            <th className="px-4 py-3 font-normal">Deletion Date</th>
-                                                            <th className="px-4 py-3 text-right font-normal">Action</th>
+                                                            <th className="px-4 py-3 font-normal">Radyo Adı</th>
+                                                            <th className="px-4 py-3 font-normal">Silinme Tarihi</th>
+                                                            <th className="px-4 py-3 text-right font-normal">İşlem</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody className="divide-y divide-neutral-900">
@@ -548,7 +677,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                                                         className="text-neutral-700 hover:text-white underline underline-offset-4"
                                                                         onClick={() => void restoreStation(s.id)}
                                                                     >
-                                                                        Restore
+                                                                        Kurtar
                                                                     </button>
                                                                 </td>
                                                             </tr>
