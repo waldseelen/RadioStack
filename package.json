@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "db:seed": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" prisma/seed.ts"
+    "lint": "eslint"
   },
   "dependencies": {
     "clsx": "^2.1.1",

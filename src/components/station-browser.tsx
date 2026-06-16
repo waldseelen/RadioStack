@@ -53,7 +53,7 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
     
     // Auth and Modal states
     const [isAuthOpen, setIsAuthOpen] = useState(false)
-    const { user, idToken, isAdmin, logout } = useAuthStore()
+    const { user, idToken, isAdmin, pendingApproval, logout } = useAuthStore()
 
     const { ids: favoriteIds, toggle, isFavorite } = useFavorites()
     const { setStation, togglePlay, currentStation } = usePlayerStore()
@@ -437,6 +437,11 @@ export function StationBrowser({ onOpenSettings }: StationBrowserProps) {
                             <Activity className="h-4 w-4 text-accent" />
                         </div>
                         <h1 className="text-sm font-semibold tracking-tight text-neutral-200">RadioStack</h1>
+                        {pendingApproval && (
+                            <div className="ml-4 px-3 py-1 bg-yellow-500/10 border border-yellow-500/50 text-yellow-500 text-[10px] uppercase font-bold tracking-widest flex items-center gap-2">
+                                <span>Hesabınız onay bekliyor</span>
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex items-center gap-2">

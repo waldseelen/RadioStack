@@ -39,6 +39,13 @@ export function getDb(): admin.firestore.Firestore {
     return admin.firestore()
 }
 
+export function getAdminAuth(): admin.auth.Auth {
+    if (admin.apps.length === 0) {
+        getDb() // initialize app
+    }
+    return admin.auth()
+}
+
 export function serializeDoc(doc: admin.firestore.DocumentSnapshot): Station {
     const data = doc.data()
     if (!data) {

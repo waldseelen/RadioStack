@@ -25,8 +25,17 @@ export function AuthModal({ onClose }: AuthModalProps) {
     setLoading(true)
     try {
       if (isRegister) {
-        await createUserWithEmailAndPassword(auth, email, password)
-        toast.success('Kayıt başarılı! Giriş yapıldı.')
+        const cred = await createUserWithEmailAndPassword(auth, email, password)
+        // Kullanıcı belgesini Firestore'a ekle (varsayılan: onay bekliyor)
+        const { doc, setDoc, serverTimestamp } = await import('firebase/firestore')
+        const { db } = await import('@/lib/firebase-client')
+        await setDoc(doc(db, 'users', cred.user.uid), {
+          email,
+          approved: false,
+          favorites: [],
+          createdAt: serverTimestamp()
+        })
+        toast.success('Kayıt başarılı! Hesabınız yönetici onayından sonra aktif olacaktır.')
       } else {
         await signInWithEmailAndPassword(auth, email, password)
         toast.success('Giriş başarılı!')

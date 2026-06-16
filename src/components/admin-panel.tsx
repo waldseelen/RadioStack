@@ -9,8 +9,14 @@ import { useAuthStore } from '@/stores/auth-store'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/lib/firebase-client'
 
-type Tab = 'import' | 'trash' | 'export' | 'offline'
+type Tab = 'import' | 'trash' | 'export' | 'offline' | 'pending'
 type ExportFormat = 'm3u' | 'm3u8' | 'csv' | 'txt' | 'xspf'
+
+interface PendingUser {
+    id: string
+    email: string
+    createdAt: string
+}
 
 interface AdminPanelProps {
     onClose: () => void
@@ -45,6 +51,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
     const [stations, setStations] = useState<Station[]>([])
     const [trash, setTrash] = useState<Station[]>([])
     const [offlineStations, setOfflineStations] = useState<Station[]>([])
+    const [pendingUsers, setPendingUsers] = useState<PendingUser[]>([])
     const [m3uText, setM3uText] = useState('')
     const [loading, setLoading] = useState(true)
     const [exportFormat, setExportFormat] = useState<ExportFormat>('m3u')
@@ -111,6 +118,24 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
     useEffect(() => {
         if (isAdmin) {
             void refresh()
+            
+            // Listen to pending users
+            import('firebase/firestore').then(({ collection, query, where, onSnapshot }) => {
+                const q = query(collection(db, 'users'), where('approved', '==', false))
+                const unsubscribe = onSnapshot(q, (snapshot) => {
+                    const users: PendingUser[] = []
+                    snapshot.forEach((doc) => {
+                        const data = doc.data()
+                        users.push({
+                            id: doc.id,
+                            email: data.email || 'Bilinmiyor',
+                            createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toLocaleString() : 'Bilinmiyor'
+                        })
+                    })
+                    setPendingUsers(users)
+                })
+                return unsubscribe
+            })
         }
     }, [isAdmin, refresh])
 
@@ -272,6 +297,23 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
         }
     }
 
+    const handleApproveUser = async (uid: string, approve: boolean) => {
+        try {
+            const res = await fetch(`/api/users/${uid}/approve`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
+                body: JSON.stringify({ approved: approve })
+            })
+            await parseJson(res)
+            toast.success(approve ? 'Kullanıcı onaylandı' : 'Kullanıcı reddedildi (Onay kaldırıldı)')
+        } catch (e) {
+            toast.error(e instanceof Error ? e.message : 'İşlem başarısız')
+        }
+    }
+
     const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (!file) return
@@ -400,6 +442,7 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                 ['export', 'Dışarı Aktar', Download],
                                 ['offline', `Offline (${offlineCount})`, WifiOff],
                                 ['trash', `Çöp Kutusu (${trashCount})`, Trash],
+                                ['pending', `Onay Bekleyen (${pendingUsers.length})`, CheckSquare],
                             ] as const
                         ).map(([id, label, Icon]) => (
                             <button
@@ -619,6 +662,64 @@ export function AdminPanel({ onClose }: AdminPanelProps) {
                                             </div>
                                         </section>
                                     ))
+                                )}
+                            </div>
+                        ) : tab === 'pending' ? (
+                            <div className="max-w-5xl space-y-6 mx-auto animate-in fade-in duration-500">
+                                <div className="flex items-center justify-between p-4 border border-neutral-800 bg-neutral-900/10">
+                                    <div className="flex items-center gap-3">
+                                       <CheckSquare className="h-4 w-4 text-neutral-700" />
+                                       <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600">Onay Bekleyen Kullanıcılar</span>
+                                    </div>
+                                    <div className="text-[10px] uppercase text-neutral-500 font-mono">
+                                        Kayıt olmuş ancak henüz onaylanmamış hesaplar.
+                                    </div>
+                                </div>
+                                
+                                {pendingUsers.length === 0 ? (
+                                    <div className="border border-dashed border-neutral-900 py-32 text-center text-neutral-800 font-mono text-[10px] uppercase tracking-widest">
+                                        Bekleyen kullanıcı bulunamadı
+                                    </div>
+                                ) : (
+                                    <section className="border border-neutral-800 bg-black/20">
+                                        <div className="overflow-x-auto">
+                                            <table className="w-full text-left text-[11px] font-sans">
+                                                <thead>
+                                                    <tr className="border-b border-neutral-900 text-neutral-700 uppercase tracking-wider text-[9px] font-bold">
+                                                        <th className="px-4 py-3 font-normal">Kullanıcı (E-Posta)</th>
+                                                        <th className="px-4 py-3 font-normal">Kayıt Tarihi</th>
+                                                        <th className="px-4 py-3 text-right font-normal">İşlem</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="divide-y divide-neutral-900">
+                                                    {pendingUsers.map((u) => (
+                                                        <tr key={u.id} className="hover:bg-neutral-900/10 transition-colors">
+                                                            <td className="px-4 py-3 text-neutral-500 font-medium">{u.email}</td>
+                                                            <td className="px-4 py-3 text-neutral-700 font-mono text-[9px] truncate">
+                                                                {u.createdAt}
+                                                            </td>
+                                                            <td className="px-4 py-3 text-right">
+                                                                <button
+                                                                    type="button"
+                                                                    className="text-neutral-700 hover:text-accent underline underline-offset-4 mr-4"
+                                                                    onClick={() => void handleApproveUser(u.id, true)}
+                                                                >
+                                                                    Onayla
+                                                                </button>
+                                                                <button
+                                                                    type="button"
+                                                                    className="text-neutral-700 hover:text-red-500 underline underline-offset-4"
+                                                                    onClick={() => void handleApproveUser(u.id, false)}
+                                                                >
+                                                                    Reddet
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
                                 )}
                             </div>
                         ) : (
