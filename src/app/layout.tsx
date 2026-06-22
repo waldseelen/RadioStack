@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { IBM_Plex_Mono, Inter } from 'next/font/google'
 import { Toaster } from 'sonner'
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className="min-h-dvh bg-black font-sans antialiased text-neutral-200">
         {children}
         <Toaster richColors position="bottom-right" theme="dark" />
+        <SpeedInsights />
       </body>
     </html>
   )
