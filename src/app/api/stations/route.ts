@@ -1,6 +1,7 @@
 import { getDb, serializeDoc } from '@/lib/firebase'
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyAuth } from '@/lib/auth'
+import type { Station } from '@/types/station'
 
 export async function GET(req: NextRequest) {
     try {
@@ -18,7 +19,7 @@ export async function GET(req: NextRequest) {
         const snapshot = await query.get()
         const stations = snapshot.docs.map(serializeDoc)
 
-        stations.sort((a, b) => {
+        stations.sort((a: Station, b: Station) => {
             const catA = a.category || ''
             const catB = b.category || ''
             const catCompare = catA.localeCompare(catB)

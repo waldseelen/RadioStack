@@ -35,7 +35,7 @@ export async function DELETE(req: NextRequest) {
             .get()
 
         const batch = db.batch()
-        snapshot.docs.forEach((doc) => {
+        snapshot.docs.forEach((doc: any) => {
             batch.delete(doc.ref)
         })
         await batch.commit()

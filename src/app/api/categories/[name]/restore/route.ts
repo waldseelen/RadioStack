@@ -25,7 +25,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
         }
 
         const batch = db.batch()
-        snapshot.docs.forEach((doc) => {
+        snapshot.docs.forEach((doc: any) => {
             batch.update(doc.ref, {
                 deletedAt: null,
                 updatedAt: new Date()

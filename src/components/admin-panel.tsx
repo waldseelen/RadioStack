@@ -1,13 +1,13 @@
 'use client'
 
 import type { Station } from '@/types/station'
-import { Upload, Trash, Info, Settings, RefreshCcw, Download, X, FileText, Code, FileJson, WifiOff, LogOut, Key } from 'lucide-react'
+import { Upload, Trash, Info, Settings, RefreshCcw, Download, X, FileText, Code, FileJson, WifiOff, LogOut, Key, CheckSquare } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState, useRef } from 'react'
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 import { useAuthStore } from '@/stores/auth-store'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/lib/firebase-client'
+import { auth, db } from '@/lib/firebase-client'
 
 type Tab = 'import' | 'trash' | 'export' | 'offline' | 'pending'
 type ExportFormat = 'm3u' | 'm3u8' | 'csv' | 'txt' | 'xspf'

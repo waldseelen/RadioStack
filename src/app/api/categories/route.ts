@@ -9,7 +9,7 @@ export async function GET() {
             .get()
 
         const categoriesSet = new Set<string>()
-        snapshot.docs.forEach((doc) => {
+        snapshot.docs.forEach((doc: any) => {
             const cat = doc.data().category
             if (typeof cat === 'string' && cat.trim()) {
                 categoriesSet.add(cat.trim())

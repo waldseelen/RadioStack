@@ -26,7 +26,7 @@ export async function DELETE(req: NextRequest, ctx: Ctx) {
 
         const now = new Date()
         const batch = db.batch()
-        snapshot.docs.forEach((doc) => {
+        snapshot.docs.forEach((doc: any) => {
             batch.update(doc.ref, {
                 deletedAt: now,
                 updatedAt: now

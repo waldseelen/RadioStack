@@ -1,14 +1,14 @@
 import { getDb } from './firebase'
-import * as admin from 'firebase-admin'
+import { getAuth, DecodedIdToken } from 'firebase-admin/auth'
 
 /**
  * Gelen HTTP isteğindeki Authorization başlığından Firebase ID belirtecini (token) 
  * çıkarır ve firebase-admin SDK kullanarak doğrular.
  * 
  * @param req Gelen Request nesnesi
- * @returns Doğrulanmış kullanıcı belirteç bilgisi (DecodedIdToken) veya null
+ * @returns Doğrulanmış kullanıcı belirteç bilgi (DecodedIdToken) veya null
  */
-export async function verifyAuth(req: Request): Promise<admin.auth.DecodedIdToken | null> {
+export async function verifyAuth(req: Request): Promise<DecodedIdToken | null> {
     try {
         // Firebase Admin SDK'nın başlatıldığından emin ol
         getDb()
@@ -23,7 +23,7 @@ export async function verifyAuth(req: Request): Promise<admin.auth.DecodedIdToke
             return null
         }
         
-        const decodedToken = await admin.auth().verifyIdToken(token)
+        const decodedToken = await getAuth().verifyIdToken(token)
         return decodedToken
     } catch (error) {
         console.error('Auth verification failed:', error)
